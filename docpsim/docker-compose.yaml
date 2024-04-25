@@ -1,0 +1,39 @@
+
+version: '3.8'
+
+services:
+
+  db:
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+      PGDATA: /var/lib/postgresql/data/zespolowy/
+    ports:
+      - 5432:5432
+    volumes:
+      - ./backend/dump.d/:/docker-entrypoint-initdb.d/
+
+  backend:
+    build:
+      context: .
+      dockerfile: DOCKERFILE.backend
+    ports:
+      - "80:80"
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@db:5432/postgres
+    volumes:
+      - ./backend/:/app/backend
+
+  frontend:
+      build:
+        context: .
+        dockerfile: DOCKERFILE.frontend
+      ports:
+        - "3000:3000"
+      volumes:
+          - ./frontend/:/app/frontend
+
