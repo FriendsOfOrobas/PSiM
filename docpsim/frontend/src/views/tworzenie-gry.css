@@ -1,0 +1,336 @@
+.tworzenie-gry-container {
+  width: 100%;
+  display: flex;
+  overflow: auto;
+  min-height: 100vh;
+  align-items: center;
+  flex-direction: column;
+}
+.tworzenie-gry-navbar {
+  flex: 0 0 auto;
+  width: 100%;
+  height: var(--dl-size-size-medium);
+  display: flex;
+  align-self: flex-end;
+  align-items: flex-start;
+  padding-top: 0px;
+  padding-left: var(--dl-space-space-unit);
+  padding-right: var(--dl-space-space-unit);
+  padding-bottom: 0px;
+  justify-content: flex-end;
+  background-color: var(--dl-color-primary-300);
+}
+.tworzenie-gry-button {
+  color: var(--dl-color-gray-white);
+  width: var(--dl-size-size-large);
+  height: 100%;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+  border-color: rgba(0, 0, 0, 0);
+  border-width: 0px;
+  background-color: var(--dl-color-primary-300);
+}
+.tworzenie-gry-container1 {
+  width: 100%;
+  height: 900px;
+  display: flex;
+  padding: var(--dl-space-space-unit);
+  align-self: flex-start;
+  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.tworzenie-gry-container2 {
+  flex: 0 0 auto;
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-self: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.tworzenie-gry-text03 {
+  font-size: 32px;
+  align-self: flex-start;
+}
+.tworzenie-gry-container3 {
+  gap: var(--dl-space-space-unit);
+  width: 100%;
+  height: auto;
+  display: flex;
+  padding: var(--dl-space-space-unit);
+  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.tworzenie-gry-text06 {
+  font-size: 32px;
+  align-self: flex-start;
+}
+.tworzenie-gry-teamlist {
+  gap: var(--dl-space-space-halfunit);
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  padding: 0px;
+  align-self: center;
+  overflow-y: auto;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: flex-start;
+  scroll-behavior: auto;
+}
+.tworzenie-gry-teamitem {
+  flex: 0 0 auto;
+  width: 100%;
+  height: auto;
+  display: flex;
+  padding: var(--dl-space-space-halfunit);
+  align-self: center;
+  align-items: flex-start;
+  border-width: 0px;
+  border-radius: 16px;
+  flex-direction: column;
+  background-color: #aaaaaa;
+}
+.tworzenie-gry-text09 {
+  font-size: 24px;
+  align-self: flex-start;
+}
+.tworzenie-gry-text12 {
+  width: 100%;
+  height: 100%;
+  font-size: 16px;
+  align-self: flex-start;
+}
+.tworzenie-gry-text16 {
+  width: 100%;
+  height: 100%;
+  font-size: 16px;
+  align-self: flex-end;
+  text-align: right;
+}
+.tworzenie-gry-teamitemunfinished {
+  flex: 0 0 auto;
+  width: 100%;
+  height: auto;
+  display: flex;
+  padding: var(--dl-space-space-halfunit);
+  align-self: center;
+  align-items: flex-start;
+  border-width: 0px;
+  border-radius: 16px;
+  flex-direction: column;
+  background-color: #aaaaaa;
+}
+.tworzenie-gry-textinput1 {
+  font-size: 24px;
+}
+.tworzenie-gry-container4 {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: row;
+}
+.tworzenie-gry-button1 {
+  color: var(--dl-color-gray-white);
+  width: auto;
+  font-size: 32px;
+  align-self: center;
+  font-style: normal;
+  margin-top: var(--dl-space-space-halfunit);
+  font-weight: 400;
+  border-color: #ffffff;
+  border-width: 0px;
+  background-color: var(--dl-color-primary-300);
+}
+.tworzenie-gry-text21 {
+  text-align: center;
+}
+.tworzenie-gry-button2 {
+  color: var(--dl-color-gray-white);
+  width: 100%;
+  height: auto;
+  margin: 0px;
+  font-size: 32px;
+  align-self: center;
+  font-style: normal;
+  font-weight: 400;
+  border-color: #ffffff;
+  background-color: var(--dl-color-primary-300);
+}
+.tworzenie-gry-text24 {
+  text-align: center;
+}
+.tworzenie-gry-container5 {
+  gap: var(--dl-space-space-unit);
+  width: 100%;
+  height: auto;
+  display: flex;
+  padding: var(--dl-space-space-unit);
+  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.tworzenie-gry-text27 {
+  font-size: 32px;
+  align-self: flex-start;
+}
+.tworzenie-gry-teamlist1 {
+  gap: var(--dl-space-space-halfunit);
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  padding: 0px;
+  align-self: center;
+  overflow-y: auto;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: flex-start;
+  scroll-behavior: auto;
+}
+.tworzenie-gry-teamitem1 {
+  flex: 0 0 auto;
+  width: 100%;
+  height: auto;
+  display: flex;
+  padding: var(--dl-space-space-halfunit);
+  align-self: center;
+  align-items: flex-start;
+  border-width: 0px;
+  border-radius: 16px;
+  flex-direction: column;
+  background-color: #aaaaaa;
+}
+.tworzenie-gry-text30 {
+  font-size: 24px;
+  align-self: flex-start;
+}
+.tworzenie-gry-text33 {
+  width: 100%;
+  height: 100%;
+  font-size: 16px;
+  align-self: flex-start;
+}
+.tworzenie-gry-text37 {
+  width: 100%;
+  height: 100%;
+  font-size: 16px;
+  align-self: flex-end;
+  text-align: left;
+}
+.tworzenie-gry-text38 {
+  font-style: normal;
+  font-weight: 700;
+}
+.tworzenie-gry-teamitemunfinished1 {
+  flex: 0 0 auto;
+  width: 100%;
+  height: auto;
+  display: flex;
+  padding: var(--dl-space-space-halfunit);
+  align-self: center;
+  align-items: flex-start;
+  border-width: 0px;
+  border-radius: 16px;
+  flex-direction: column;
+  background-color: #aaaaaa;
+}
+.tworzenie-gry-textinput2 {
+  font-size: 24px;
+}
+.tworzenie-gry-container6 {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: row;
+}
+.tworzenie-gry-textinput3 {
+  font-size: 24px;
+}
+.tworzenie-gry-textinput4 {
+  font-size: 24px;
+}
+.tworzenie-gry-button3 {
+  color: var(--dl-color-gray-white);
+  width: auto;
+  font-size: 32px;
+  align-self: center;
+  font-style: normal;
+  margin-top: var(--dl-space-space-halfunit);
+  font-weight: 400;
+  border-color: #ffffff;
+  border-width: 0px;
+  background-color: var(--dl-color-primary-300);
+}
+.tworzenie-gry-text41 {
+  text-align: center;
+}
+.tworzenie-gry-button4 {
+  color: var(--dl-color-gray-white);
+  width: 100%;
+  height: auto;
+  margin: 0px;
+  font-size: 32px;
+  align-self: center;
+  font-style: normal;
+  font-weight: 400;
+  border-color: #ffffff;
+  background-color: var(--dl-color-primary-300);
+}
+.tworzenie-gry-text44 {
+  text-align: center;
+}
+.tworzenie-gry-button5 {
+  color: var(--dl-color-gray-white);
+  width: 100%;
+  height: auto;
+  margin: 0px;
+  font-size: 32px;
+  align-self: center;
+  font-style: normal;
+  font-weight: 400;
+  border-color: #ffffff;
+  background-color: var(--dl-color-primary-300);
+}
+.tworzenie-gry-text47 {
+  text-align: center;
+}
+@media(max-width: 1200px) {
+  .tworzenie-gry-container2 {
+    align-self: flex-start;
+  }
+  .tworzenie-gry-container4 {
+    flex-direction: row;
+  }
+  .tworzenie-gry-container6 {
+    flex-direction: row;
+  }
+}
+@media(max-width: 991px) {
+  .tworzenie-gry-text03 {
+    font-size: 32px;
+  }
+  .tworzenie-gry-text06 {
+    font-size: 32px;
+  }
+  .tworzenie-gry-text27 {
+    font-size: 32px;
+  }
+}
+@media(max-width: 479px) {
+  .tworzenie-gry-text03 {
+    height: var(--dl-size-size-medium);
+    font-size: 32px;
+  }
+  .tworzenie-gry-text06 {
+    height: var(--dl-size-size-medium);
+    font-size: 32px;
+  }
+  .tworzenie-gry-text27 {
+    height: var(--dl-size-size-medium);
+    font-size: 32px;
+  }
+}

@@ -1,0 +1,349 @@
+.gracz-container {
+  width: 100%;
+  display: flex;
+  overflow: auto;
+  min-height: 100vh;
+  align-items: center;
+  flex-direction: column;
+}
+.gracz-navbar {
+  flex: 0 0 auto;
+  width: 100%;
+  height: var(--dl-size-size-medium);
+  display: flex;
+  align-self: flex-end;
+  align-items: flex-start;
+  padding-top: 0px;
+  padding-left: var(--dl-space-space-unit);
+  padding-right: var(--dl-space-space-unit);
+  padding-bottom: 0px;
+  justify-content: flex-end;
+  background-color: var(--dl-color-primary-300);
+}
+.gracz-button {
+  color: var(--dl-color-gray-white);
+  width: var(--dl-size-size-large);
+  height: 100%;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+  border-color: rgba(0, 0, 0, 0);
+  border-width: 0px;
+  background-color: var(--dl-color-primary-300);
+}
+.gracz-container1 {
+  flex: 0 0 auto;
+  width: auto;
+  height: 674px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+.gracz-container2 {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+.gracz-container3 {
+  flex: 0 0 auto;
+  width: 200px;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+.gracz-gameitem {
+  flex: 0 0 auto;
+  width: 100%;
+  height: auto;
+  display: flex;
+  padding: var(--dl-space-space-halfunit);
+  align-self: center;
+  align-items: flex-start;
+  border-width: 0px;
+  border-radius: 16px;
+  flex-direction: column;
+  background-color: #aaaaaa;
+}
+.gracz-text12 {
+  font-size: 24px;
+  align-self: flex-start;
+}
+.gracz-text15 {
+  width: 100%;
+  height: 100%;
+  font-size: 16px;
+  align-self: flex-start;
+}
+.gracz-gameitem1 {
+  flex: 0 0 auto;
+  width: 100%;
+  height: auto;
+  display: flex;
+  padding: var(--dl-space-space-halfunit);
+  align-self: center;
+  align-items: flex-start;
+  border-width: 0px;
+  border-radius: 16px;
+  flex-direction: column;
+  background-color: #aaaaaa;
+}
+.gracz-text16 {
+  font-size: 24px;
+  align-self: flex-start;
+}
+.gracz-text19 {
+  width: 100%;
+  height: 100%;
+  font-size: 16px;
+  align-self: flex-start;
+}
+.gracz-gameitem2 {
+  flex: 0 0 auto;
+  width: 100%;
+  height: auto;
+  display: flex;
+  padding: var(--dl-space-space-halfunit);
+  align-self: center;
+  align-items: flex-start;
+  border-width: 0px;
+  border-radius: 16px;
+  flex-direction: column;
+  background-color: #aaaaaa;
+}
+.gracz-text20 {
+  font-size: 24px;
+  align-self: flex-start;
+}
+.gracz-text23 {
+  width: 100%;
+  height: 100%;
+  font-size: 16px;
+  align-self: flex-start;
+}
+.gracz-container4 {
+  flex: 0 0 auto;
+  width: 200px;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+.gracz-gameitem3 {
+  flex: 0 0 auto;
+  width: 100%;
+  height: auto;
+  display: flex;
+  padding: var(--dl-space-space-halfunit);
+  align-self: center;
+  align-items: flex-start;
+  border-width: 0px;
+  border-radius: 16px;
+  flex-direction: column;
+  background-color: #aaaaaa;
+}
+.gracz-text27 {
+  font-size: 24px;
+  align-self: flex-start;
+}
+.gracz-text30 {
+  width: 100%;
+  height: 100%;
+  font-size: 16px;
+  align-self: flex-start;
+}
+.gracz-gameitem4 {
+  flex: 0 0 auto;
+  width: 100%;
+  height: auto;
+  display: flex;
+  padding: var(--dl-space-space-halfunit);
+  align-self: center;
+  align-items: flex-start;
+  border-width: 0px;
+  border-radius: 16px;
+  flex-direction: column;
+  background-color: #aaaaaa;
+}
+.gracz-text31 {
+  font-size: 24px;
+  align-self: flex-start;
+}
+.gracz-text34 {
+  width: 100%;
+  height: 100%;
+  font-size: 16px;
+  align-self: flex-start;
+}
+.gracz-gameitem5 {
+  flex: 0 0 auto;
+  width: 100%;
+  height: auto;
+  display: flex;
+  padding: var(--dl-space-space-halfunit);
+  align-self: center;
+  align-items: flex-start;
+  border-width: 0px;
+  border-radius: 16px;
+  flex-direction: column;
+  background-color: #aaaaaa;
+}
+.gracz-text35 {
+  font-size: 24px;
+  align-self: flex-start;
+}
+.gracz-text38 {
+  width: 100%;
+  height: 100%;
+  font-size: 16px;
+  align-self: flex-start;
+}
+.gracz-container5 {
+  flex: 0 0 auto;
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+@media(max-width: 1200px) {
+  .gracz-navbar {
+    position: relative;
+  }
+  .gracz-text {
+    top: 26px;
+    left: 46px;
+    color: rgb(66, 17, 170);
+    margin: auto;
+    position: absolute;
+    font-size: 32px;
+    align-self: center;
+    box-shadow: rgb(14, 167, 21) 5px 5px 20px 10px, rgb(14, 167, 21) -5px -5px 20px 10px;
+    text-align: center;
+    font-family: Georgia;
+    border-radius: var(--dl-radius-radius-radius2);
+    animation-name: pulse;
+    animation-delay: 0s;
+    background-color: rgb(14, 167, 21);
+    animation-duration: 300ms;
+    animation-direction: alternate;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in-out;
+  }
+  .gracz-text01 {
+    align-self: center;
+  }
+  .gracz-text06 {
+    color: var(--dl-color-primary-300);
+    padding: var(--dl-space-space-halfunit);
+    font-size: 42px;
+    align-self: center;
+    margin-top: var(--dl-space-space-oneandhalfunits);
+    text-align: center;
+    font-family: Georgia;
+  }
+  .gracz-container1 {
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  .gracz-container2 {
+    width: 100%;
+  }
+  .gracz-container3 {
+    width: auto;
+    height: 233px;
+    border-color: var(--dl-color-primary-300);
+    border-width: 1px;
+    margin-right: 1px;
+    padding-right: 0px;
+  }
+  .gracz-text09 {
+    width: auto;
+    height: auto;
+    padding: var(--dl-space-space-halfunit);
+    align-self: center;
+    margin-top: var(--dl-space-space-oneandhalfunits);
+  }
+  .gracz-ul {
+    height: 555px;
+  }
+  .gracz-text12 {
+    font-size: 24px;
+  }
+  .gracz-text15 {
+    font-size: 16px;
+  }
+  .gracz-text16 {
+    font-size: 24px;
+  }
+  .gracz-text19 {
+    font-size: 16px;
+  }
+  .gracz-text20 {
+    font-size: 24px;
+  }
+  .gracz-text23 {
+    font-size: 16px;
+  }
+  .gracz-container4 {
+    width: auto;
+    height: 233px;
+    border-color: var(--dl-color-primary-300);
+    border-width: 1px;
+    padding-left: 1px;
+    padding-bottom: 2px;
+  }
+  .gracz-text24 {
+    width: auto;
+    height: auto;
+    padding: var(--dl-space-space-halfunit);
+    align-self: center;
+    margin-top: var(--dl-space-space-oneandhalfunits);
+  }
+  .gracz-ul1 {
+    height: 555px;
+  }
+  .gracz-text27 {
+    font-size: 24px;
+  }
+  .gracz-text30 {
+    font-size: 16px;
+  }
+  .gracz-text31 {
+    font-size: 24px;
+  }
+  .gracz-text34 {
+    font-size: 16px;
+  }
+  .gracz-text35 {
+    font-size: 24px;
+  }
+  .gracz-text38 {
+    font-size: 16px;
+  }
+  .gracz-container5 {
+    width: 100%;
+    height: 440px;
+    position: relative;
+    border-color: var(--dl-color-primary-300);
+    border-width: 1px;
+  }
+  .gracz-text39 {
+    top: 20px;
+    left: 69px;
+    position: absolute;
+  }
+  .gracz-ul2 {
+    top: 89px;
+    flex: 1;
+    left: 47px;
+    right: 1px;
+    width: 240px;
+    bottom: 0px;
+    margin: auto;
+    position: absolute;
+    align-self: center;
+    box-shadow: 5px 5px 10px 0px #d4d4d4;
+    margin-right: 50%;
+    border-radius: 16px;
+    background-color: #D9D9D9;
+  }
+}
