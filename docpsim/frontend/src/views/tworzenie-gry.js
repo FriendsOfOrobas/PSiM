@@ -12,14 +12,14 @@ const TworzenieGry = (props) => {
         <title>Tworzenie-gry - Gra miejska</title>
         <meta property="og:title" content="Tworzenie-gry - Gra miejska" />
       </Helmet>
-      <div className="tworzenie-gry-navbar">
+      {/* <div className="tworzenie-gry-navbar">
         <button type="button" className="tworzenie-gry-button button">
           <span>
             <span>Wyloguj</span>
             <br></br>
           </span>
         </button>
-      </div>
+      </div> */}
       <div className="tworzenie-gry-container1">
         <div className="tworzenie-gry-container2">
           <span className="tworzenie-gry-text03">

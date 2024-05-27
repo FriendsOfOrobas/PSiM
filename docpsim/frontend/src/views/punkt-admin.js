@@ -11,7 +11,7 @@ const PunktAdmin = (props) => {
         <title>PunktAdmin - Gra miejska</title>
         <meta property="og:title" content="PunktAdmin - Gra miejska" />
       </Helmet>
-      <div className="punkt-admin-navbar">
+      {/* <div className="punkt-admin-navbar">
         <h1 className="punkt-admin-text">&#123;Nazwa_Punktu&#125;</h1>
         <button type="button" className="punkt-admin-button button">
           <span>
@@ -19,7 +19,7 @@ const PunktAdmin = (props) => {
             <br></br>
           </span>
         </button>
-      </div>
+      </div> */}
       <div className="punkt-admin-container1">
         <div className="punkt-admin-container2">
           <h1 className="punkt-admin-text04">Komentarze</h1>

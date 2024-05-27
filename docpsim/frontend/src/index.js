@@ -1,11 +1,13 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { createRoot } from "react-dom/client";
+
 import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  Redirect,
+  createBrowserRouter,
+  RouterProvider,
+  createRoutesFromElements,
+  Route
 } from 'react-router-dom'
+import {StrictMode} from 'react';
 
 import './style.css'
 import Punkt from './views/punkt'
@@ -18,25 +20,45 @@ import Rejestracja from './views/rejestracja'
 import Zespol from './views/zespol'
 import Home from './views/home'
 import NotFound from './views/not-found'
+import MainLayout from './layouts/MainLayout'
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+  <Route element={<MainLayout/>} path="/" >
+        <Route element={<Punkt/>} path="/punkt" />
+        <Route element={<PunktAdmin/>} path="/punkt-admin" />
+        <Route element={<Logowanie/>}  path="/logowanie" />
+        <Route element={<Gracz/>}  path="/gracz" />
+        <Route element={<MojeGry/>}  path="/moje-gry" />
+        <Route element={<TworzenieGry/>}  path="/tworzenie-gry" />
+        <Route element={<Rejestracja/>}  path="/rejestracja" />
+        <Route element={<Zespol/>}  path="/zespol" />
+        <Route element={<Home />}  index />
+        <Route element={<NotFound/>} path="*" />
+  </Route>
+  )
+)
 
 const App = () => {
-  return (
-    <Router>
-      <Switch>
-        <Route component={Punkt} exact path="/punkt" />
-        <Route component={PunktAdmin} exact path="/punkt-admin" />
-        <Route component={Logowanie} exact path="/logowanie" />
-        <Route component={Gracz} exact path="/gracz" />
-        <Route component={MojeGry} exact path="/moje-gry" />
-        <Route component={TworzenieGry} exact path="/tworzenie-gry" />
-        <Route component={Rejestracja} exact path="/rejestracja" />
-        <Route component={Zespol} exact path="/zespol" />
-        <Route component={Home} exact path="/" />
-        <Route component={NotFound} path="**" />
-        <Redirect to="**" />
-      </Switch>
-    </Router>
-  )
+  return <RouterProvider router={router}/>;
+  
 }
 
-ReactDOM.render(<App />, document.getElementById('app'))
+// const rootElement = 
+// document.getElementById('root');
+// const root = 
+// createRoot(rootElement);
+// root.render(
+//   <StrictMode>
+//     <App />
+//   </StrictMode>,
+// );
+
+const rootElement = document.getElementById("app");
+const root = createRoot(rootElement);
+
+root.render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+);

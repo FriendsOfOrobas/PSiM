@@ -6,19 +6,19 @@ import './moje-gry.css'
 
 const MojeGry = (props) => {
   return (
-    <div className="moje-gry-container">
+    <>
       <Helmet>
         <title>Moje-gry - Gra miejska</title>
         <meta property="og:title" content="Moje-gry - Gra miejska" />
       </Helmet>
-      <div className="moje-gry-navbar">
+      {/* <div className="moje-gry-navbar">
         <button type="button" className="moje-gry-button button">
           <span>
             <span>Wyloguj</span>
             <br></br>
           </span>
         </button>
-      </div>
+      </div> */}
       <div className="moje-gry-container1">
         <div className="moje-gry-container2">
           <span className="moje-gry-text03">
@@ -169,7 +169,7 @@ const MojeGry = (props) => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   )
 }
 

@@ -6,12 +6,12 @@ import './gracz.css'
 
 const Gracz = (props) => {
   return (
-    <div className="gracz-container">
+    <>
       <Helmet>
         <title>Gracz - Gra miejska</title>
         <meta property="og:title" content="Gracz - Gra miejska" />
       </Helmet>
-      <div className="gracz-navbar">
+      {/* <div className="gracz-navbar">
         <animate-on-reveal
           animation="tada"
           duration="500ms"
@@ -32,7 +32,8 @@ const Gracz = (props) => {
             <br></br>
           </span>
         </button>
-      </div>
+      </div> */}
+      <div className='gra-container'>
       <span className="gracz-text06">
         <span>&#123;Nazwa Aktualnie rozgrywanej Gry&#125;</span>
         <br></br>
@@ -218,7 +219,8 @@ const Gracz = (props) => {
           </ul>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   )
 }
 

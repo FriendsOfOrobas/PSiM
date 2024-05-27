@@ -3,26 +3,16 @@ import React from 'react'
 import { Helmet } from 'react-helmet'
 
 import './zespol.css'
-import { Link } from 'react-router-dom/cjs/react-router-dom.min'
+
 
 const Zespol = (props) => {
   return (
-    <div className="zespol-container">
+    <>
       <Helmet>
         <title>Zespol - Gra miejska</title>
         <meta property="og:title" content="Zespol - Gra miejska" />
       </Helmet>
-      <div className="zespol-navbar">
-        <h1 className="zespol-text">&#123;Nazwa_Zespolu&#125;</h1>
-        <button type="button" className="zespol-button button">
-          <Link to="/rejestracja">
-          <span>
-            <span>Wyloguj</span>
-            <br></br>
-          </span>
-          </Link>
-        </button>
-      </div>
+      
       <div className="zespol-container1">
         <div className="zespol-container2">
           <div className="zespol-container3">
@@ -195,7 +185,7 @@ const Zespol = (props) => {
           </ul>
         </div>
       </div>
-    </div>
+    </>
   )
 }
 

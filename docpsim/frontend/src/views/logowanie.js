@@ -6,12 +6,12 @@ import './logowanie.css'
 
 const Logowanie = (props) => {
   return (
-    <div className="logowanie-container">
+    <>
       <Helmet>
         <title>Logowanie - Gra miejska</title>
         <meta property="og:title" content="Logowanie - Gra miejska" />
       </Helmet>
-      <div className="logowanie-emptynavbar"></div>
+      {/* <div className="logowanie-emptynavbar"></div> */}
       <div className="logowanie-container1">
         <div className="logowanie-container2">
           <span className="logowanie-text">Zaloguj się</span>
@@ -29,7 +29,7 @@ const Logowanie = (props) => {
           </button>
         </div>
       </div>
-    </div>
+    </>
   )
 }
 

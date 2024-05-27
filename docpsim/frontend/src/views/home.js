@@ -6,12 +6,12 @@ import './home.css'
 
 const Home = (props) => {
   return (
-    <div className="home-container">
+    <>
       <Helmet>
         <title>Gra miejska</title>
         <meta property="og:title" content="Gra miejska" />
       </Helmet>
-      <div className="home-emptynavbar"></div>
+      {/* <div className="home-emptynavbar"></div> */}
       <div className="home-container1">
         <span className="home-text">
           <span>Dołącz do nas lub kontynuuj zabawę!</span>
@@ -32,7 +32,7 @@ const Home = (props) => {
           </button>
         </div>
       </div>
-    </div>
+    </>
   )
 }
 

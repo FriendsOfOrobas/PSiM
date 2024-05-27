@@ -6,35 +6,13 @@
   align-items: center;
   flex-direction: column;
 }
-.zespol-navbar {
-  flex: 0 0 auto;
-  width: 100%;
-  height: var(--dl-size-size-medium);
-  display: flex;
-  align-self: flex-end;
-  align-items: flex-start;
-  padding-top: 0px;
-  padding-left: var(--dl-space-space-unit);
-  padding-right: var(--dl-space-space-unit);
-  padding-bottom: 0px;
-  justify-content: flex-end;
-  background-color: var(--dl-color-primary-300);
-}
-.zespol-button {
-  color: var(--dl-color-gray-white);
-  width: var(--dl-size-size-large);
-  height: 100%;
-  font-size: 32px;
-  font-style: normal;
-  font-weight: 400;
-  border-color: rgba(0, 0, 0, 0);
-  border-width: 0px;
-  background-color: var(--dl-color-primary-300);
-}
+
 .zespol-container1 {
   flex: 0 0 auto;
   width: auto;
   height: auto;
+  min-height: 90vh;
+  padding: 2vh;
   display: flex;
   align-items: flex-start;
   justify-content: center;

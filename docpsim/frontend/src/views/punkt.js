@@ -11,7 +11,7 @@ const Punkt = (props) => {
         <title>Punkt - Gra miejska</title>
         <meta property="og:title" content="Punkt - Gra miejska" />
       </Helmet>
-      <div className="punkt-navbar">
+      {/* <div className="punkt-navbar">
         <h1 className="punkt-text">&#123;Nazwa_Punktu&#125;</h1>
         <button type="button" className="punkt-button button">
           <span>
@@ -19,7 +19,7 @@ const Punkt = (props) => {
             <br></br>
           </span>
         </button>
-      </div>
+      </div> */}
       <div className="punkt-container1">
         <div className="punkt-container2">
           <h1 className="punkt-text04">Komentarze</h1>
