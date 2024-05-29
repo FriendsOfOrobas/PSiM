@@ -34,7 +34,7 @@
 .gracz-container1 {
   flex: 0 0 auto;
   width: auto;
-  height: 674px;
+  height: 100%;
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -203,7 +203,7 @@
   align-items: flex-start;
   justify-content: flex-end;
 }
-@media(max-width: 1200px) {
+@media(max-width: 1920px) {
   .gracz-navbar {
     position: relative;
   }
@@ -321,7 +321,8 @@
   }
   .gracz-container5 {
     width: 100%;
-    height: 440px;
+    /* height: 440px; */
+    height: 100%;
     position: relative;
     border-color: var(--dl-color-primary-300);
     border-width: 1px;
@@ -338,11 +339,11 @@
     right: 1px;
     width: 240px;
     bottom: 0px;
-    margin: auto;
-    position: absolute;
+    /* margin: auto; */
+    /* position: absolute; */
     align-self: center;
     box-shadow: 5px 5px 10px 0px #d4d4d4;
-    margin-right: 50%;
+    /* margin-right: 50%; */
     border-radius: 16px;
     background-color: #D9D9D9;
   }
