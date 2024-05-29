@@ -2,7 +2,7 @@
   width: 100%;
   display: flex;
   overflow: auto;
-  min-height: 100vh;
+  min-height: 90vh;
   align-items: center;
   flex-direction: column;
 }
@@ -22,14 +22,25 @@
 }
 .punkt-admin-button {
   color: var(--dl-color-gray-white);
-  width: var(--dl-size-size-large);
-  height: 100%;
-  font-size: 32px;
+  width: 100%;
+  height: auto;
+  font-size: 16px;
   font-style: normal;
   font-weight: 400;
   border-color: rgba(0, 0, 0, 0);
   border-width: 0px;
   background-color: var(--dl-color-primary-300);
+  margin-top: 8px;
+  text-align: center;
+  transition-duration:0.1s;
+}
+.punkt-admin-button:hover{
+  color: black;
+  background-color:#14a9ff;
+}
+.punkt-admin-button:active{
+  color: black;
+  background-color:#0e5985;
 }
 .punkt-admin-container1 {
   flex: 0 0 auto;
@@ -42,6 +53,7 @@
 .punkt-admin-container2 {
   flex: 0 0 auto;
   width: 200px;
+  min-height: 78vh;
   display: flex;
   align-items: flex-start;
   flex-direction: column;
@@ -53,6 +65,7 @@
   flex: 0 0 auto;
   width: 200px;
   height: auto;
+  min-height: 78vh;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -71,7 +84,7 @@
   align-items: flex-start;
   flex-direction: column;
 }
-@media(max-width: 1200px) {
+@media(max-width: 1920px) {
   .punkt-admin-navbar {
     position: relative;
   }

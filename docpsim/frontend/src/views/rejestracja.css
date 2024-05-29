@@ -49,4 +49,14 @@
   font-weight: 400;
   border-color: #ffffff;
   background-color: var(--dl-color-primary-300);
+  text-align: center;
+  transition-duration:0.1s;
+}
+.rejestracja-button:hover{
+  color: black;
+  background-color:#14a9ff;
+}
+.rejestracja-button:active{
+  color: black;
+  background-color:#0e5985;
 }

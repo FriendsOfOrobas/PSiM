@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { Helmet } from 'react-helmet'
+import {Link} from 'react-router-dom'
 
 import './moje-gry.css'
 
@@ -81,12 +82,9 @@ const MojeGry = (props) => {
               </span>
             </div>
           </div>
-          <button type="button" className="moje-gry-button1 button">
-            <span>
-              <span>Stwórz grę</span>
-              <br></br>
-            </span>
-          </button>
+          <Link to="/tworzenie-gry" type="button" className="moje-gry-button button">
+            Stwórz grę
+          </Link>
         </div>
         <div className="moje-gry-container3">
           <span className="moje-gry-text21">

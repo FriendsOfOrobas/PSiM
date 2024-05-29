@@ -34,10 +34,7 @@ const Rejestracja = (props) => {
             className="input"
           />
           <button type="button" className="rejestracja-button button">
-            <span>
-              <span>Zarejestruj</span>
-              <br></br>
-            </span>
+            Zarejestruj
           </button>
         </div>
       </div>

@@ -7,19 +7,11 @@ import './tworzenie-gry.css'
 
 const TworzenieGry = (props) => {
   return (
-    <div className="tworzenie-gry-container">
+    <>
       <Helmet>
         <title>Tworzenie-gry - Gra miejska</title>
         <meta property="og:title" content="Tworzenie-gry - Gra miejska" />
       </Helmet>
-      {/* <div className="tworzenie-gry-navbar">
-        <button type="button" className="tworzenie-gry-button button">
-          <span>
-            <span>Wyloguj</span>
-            <br></br>
-          </span>
-        </button>
-      </div> */}
       <div className="tworzenie-gry-container1">
         <div className="tworzenie-gry-container2">
           <span className="tworzenie-gry-text03">
@@ -28,7 +20,54 @@ const TworzenieGry = (props) => {
           </span>
           <input type="text" placeholder="placeholder" className="input" />
         </div>
-        <AppComponent></AppComponent>
+        <div className="app-component-container">
+      <span className="app-component-text">
+        <span>Zespoły</span>
+        <br></br>
+      </span>
+      <div className="app-component-teamlist">
+        <div className="app-component-teamitem button">
+          <span className="app-component-text03">
+            <span>Zespół 1</span>
+            <br></br>
+          </span>
+          <span className="app-component-text06">
+            <span>- Gracz 1</span>
+            <br></br>
+            <span>- Gracz 2</span>
+            <br></br>
+            <span>
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: ' ',
+                }}
+              />
+            </span>
+          </span>
+        </div>
+        <div className="app-component-teamitemunfinished button">
+          <input
+            type="text"
+            placeholder="placeholder"
+            className="app-component-textinput input"
+          />
+          <input
+            type="text"
+            placeholder="placeholder"
+            className="app-component-textinput1 input"
+          />
+          <button type="button" className="tworzenie-gry-button button" style={{alignSelf:"flex-start"}}>
+            Dodaj kolejnego gracza
+          </button>
+          <button type="button" className="tworzenie-gry-button-big button">
+            Zaakceptuj zespół
+          </button>
+        </div>
+        <button type="button" className="tworzenie-gry-button-big button">
+          Dodaj zespół
+        </button>
+      </div>
+    </div>
         <div className="tworzenie-gry-container3">
           <span className="tworzenie-gry-text06">
             <span>Punkty</span>
@@ -83,18 +122,12 @@ const TworzenieGry = (props) => {
                   <option value="Option 2">2</option>
                 </select>
               </div>
-              <button type="button" className="tworzenie-gry-button1 button">
-                <span className="tworzenie-gry-text21">
-                  <span>Zaakceptuj punkt</span>
-                  <br></br>
-                </span>
+              <button type="button" className="tworzenie-gry-button button">
+                Zaakceptuj punkt
               </button>
             </div>
-            <button type="button" className="tworzenie-gry-button2 button">
-              <span className="tworzenie-gry-text24">
-                <span>Dodaj punkt</span>
-                <br></br>
-              </span>
+            <button type="button" className="tworzenie-gry-button-big button">
+              Dodaj punkt
             </button>
           </div>
         </div>
@@ -157,29 +190,20 @@ const TworzenieGry = (props) => {
                 placeholder="Ilość bonusowych punktów"
                 className="tworzenie-gry-textinput4 input"
               />
-              <button type="button" className="tworzenie-gry-button3 button">
-                <span className="tworzenie-gry-text41">
-                  <span>Zaakceptuj osiągnięcie</span>
-                  <br></br>
-                </span>
+              <button type="button" className="tworzenie-gry-button button">
+                Zaakceptuj osiągnięcie
               </button>
             </div>
-            <button type="button" className="tworzenie-gry-button4 button">
-              <span className="tworzenie-gry-text44">
-                <span>Dodaj osiągnięcie</span>
-                <br></br>
-              </span>
+            <button type="button" className="tworzenie-gry-button-big button">
+              Dodaj osiągnięcie
             </button>
           </div>
         </div>
-        <button type="button" className="tworzenie-gry-button5 button">
-          <span className="tworzenie-gry-text47">
-            <span>Zaakceptuj grę</span>
-            <br></br>
-          </span>
+        <button type="button" className="tworzenie-gry-button-big button">
+          Zaakceptuj grę
         </button>
       </div>
-    </div>
+    </>
   )
 }
 

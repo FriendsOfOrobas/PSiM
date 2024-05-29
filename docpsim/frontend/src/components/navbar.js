@@ -16,9 +16,9 @@ const GreetingText = ({team, player, point}) => {
 }
 
 const ButtonContainer = ({location}) => {
-  if (location === "/" || location === "/logowanie"|| location === "/rejestracja"|| location === "/tworzenie-gry") {
+  if (location === "/" || location === "/logowanie"|| location === "/rejestracja") {
     return (
-      <Link to="/" type="button" className="zespol-button">
+      <Link to="/" type="button" className="zespol-button" style={{fontSize: "40px"}}>
             <FaHome />
       </Link>
     )

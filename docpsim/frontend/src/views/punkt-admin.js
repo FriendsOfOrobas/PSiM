@@ -6,20 +6,11 @@ import './punkt-admin.css'
 
 const PunktAdmin = (props) => {
   return (
-    <div className="punkt-admin-container">
+    <div className='punkt-admin-container'>
       <Helmet>
         <title>PunktAdmin - Gra miejska</title>
         <meta property="og:title" content="PunktAdmin - Gra miejska" />
       </Helmet>
-      {/* <div className="punkt-admin-navbar">
-        <h1 className="punkt-admin-text">&#123;Nazwa_Punktu&#125;</h1>
-        <button type="button" className="punkt-admin-button button">
-          <span>
-            <span>Wyloguj</span>
-            <br></br>
-          </span>
-        </button>
-      </div> */}
       <div className="punkt-admin-container1">
         <div className="punkt-admin-container2">
           <h1 className="punkt-admin-text04">Komentarze</h1>
@@ -42,11 +33,8 @@ const PunktAdmin = (props) => {
             placeholder="placeholder"
             className="punkt-admin-textinput input"
           />
-          <button type="submit" className="button punkt-admin-button1">
-            <span>
-              <span>Skomentuj</span>
-              <br></br>
-            </span>
+          <button type="submit" className="button punkt-admin-button">
+            Skomentuj
           </button>
         </div>
         <div className="punkt-admin-container3">
@@ -70,6 +58,9 @@ const PunktAdmin = (props) => {
           </div>
         </div>
       </div>
+      <button type="submit" className="button punkt-admin-button" style={{width:"450px",alignSelf:"center"}}>
+            Zatwierdź
+      </button>
     </div>
   )
 }

@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { Helmet } from 'react-helmet'
+import { Link } from 'react-router-dom'
 
 import './home.css'
 
@@ -18,18 +19,12 @@ const Home = (props) => {
           <br></br>
         </span>
         <div className="home-container2">
-          <button type="button" className="home-button button">
-            <span>
-              <span>Zarejestruj</span>
-              <br></br>
-            </span>
-          </button>
-          <button type="button" className="home-button1 button">
-            <span>
-              <span>Zaloguj</span>
-              <br></br>
-            </span>
-          </button>
+          <Link to="/rejestracja" type="button" className="home-button button">
+            Zarejestruj  
+          </Link>
+          <Link to="/logowanie" type="button" className="home-button button">
+            Zaloguj
+          </Link>
         </div>
       </div>
     </>

@@ -6,7 +6,7 @@ import './punkt.css'
 
 const Punkt = (props) => {
   return (
-    <div className="punkt-container">
+    <>
       <Helmet>
         <title>Punkt - Gra miejska</title>
         <meta property="og:title" content="Punkt - Gra miejska" />
@@ -42,11 +42,8 @@ const Punkt = (props) => {
             placeholder="placeholder"
             className="punkt-textinput input"
           />
-          <button type="submit" className="button punkt-button1">
-            <span>
-              <span>Skomentuj</span>
-              <br></br>
-            </span>
+          <button type="submit" className="button punkt-button">
+            Skomentuj
           </button>
         </div>
         <div className="punkt-container3">
@@ -66,7 +63,7 @@ const Punkt = (props) => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   )
 }
 

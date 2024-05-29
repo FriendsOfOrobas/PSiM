@@ -8,14 +8,6 @@
   flex-direction: column;
   justify-content: center;
 }
-.home-emptynavbar {
-  flex: 0 0 auto;
-  width: 100%;
-  height: var(--dl-size-size-medium);
-  display: flex;
-  align-items: flex-start;
-  background-color: var(--dl-color-primary-300);
-}
 .home-container1 {
   gap: var(--dl-space-space-fourunits);
   flex: 1;
@@ -51,13 +43,14 @@
   font-weight: 400;
   border-color: #ffffff;
   background-color: var(--dl-color-primary-300);
+  text-align: center;
+  transition-duration:0.1s;
 }
-.home-button1 {
-  color: var(--dl-color-gray-white);
-  width: 100%;
-  font-size: 32px;
-  font-style: normal;
-  font-weight: 400;
-  border-color: #ffffff;
-  background-color: var(--dl-color-primary-300);
+.home-button:hover{
+  color: black;
+  background-color:#14a9ff;
+}
+.home-button:active{
+  color: black;
+  background-color:#0e5985;
 }

@@ -12,17 +12,7 @@
   justify-content: flex-end;
   background-color: var(--dl-color-primary-300);
 }
-.moje-gry-button {
-  color: var(--dl-color-gray-white);
-  width: var(--dl-size-size-large);
-  height: 100%;
-  font-size: 32px;
-  font-style: normal;
-  font-weight: 400;
-  border-color: rgba(0, 0, 0, 0);
-  border-width: 0px;
-  background-color: var(--dl-color-primary-300);
-}
+
 .moje-gry-container1 {
   flex: 1;
   width: 100%;
@@ -131,7 +121,7 @@
   font-size: 16px;
   align-self: flex-start;
 }
-.moje-gry-button1 {
+.moje-gry-button {
   color: var(--dl-color-gray-white);
   width: 100%;
   font-size: 32px;
@@ -140,6 +130,16 @@
   font-weight: 400;
   border-color: #ffffff;
   background-color: var(--dl-color-primary-300);
+  text-align: center;
+  transition-duration:0.1s;
+}
+.moje-gry-button:hover{
+  color: black;
+  background-color:#14a9ff;
+}
+.moje-gry-button:active{
+  color: black;
+  background-color:#0e5985;
 }
 .moje-gry-container3 {
   width: 100%;

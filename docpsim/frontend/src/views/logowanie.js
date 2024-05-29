@@ -22,10 +22,7 @@ const Logowanie = (props) => {
           />
           <input type="password" placeholder="hasło" className="input" />
           <button type="button" className="logowanie-button button">
-            <span>
-              <span>Zaloguj</span>
-              <br></br>
-            </span>
+            Zaloguj
           </button>
         </div>
       </div>

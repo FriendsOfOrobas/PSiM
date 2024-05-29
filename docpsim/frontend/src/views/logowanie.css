@@ -6,14 +6,6 @@
   align-items: center;
   flex-direction: column;
 }
-.logowanie-emptynavbar {
-  flex: 0 0 auto;
-  width: 100%;
-  height: var(--dl-size-size-medium);
-  display: flex;
-  align-items: flex-start;
-  background-color: var(--dl-color-primary-300);
-}
 .logowanie-container1 {
   gap: 0;
   flex: 1;
@@ -49,4 +41,14 @@
   font-weight: 400;
   border-color: #ffffff;
   background-color: var(--dl-color-primary-300);
+  text-align: center;
+  transition-duration:0.1s;
+}
+.logowanie-button:hover{
+  color: black;
+  background-color:#14a9ff;
+}
+.logowanie-button:active{
+  color: black;
+  background-color:#0e5985;
 }
