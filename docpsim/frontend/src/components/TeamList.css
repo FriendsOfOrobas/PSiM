@@ -1,0 +1,188 @@
+.app-component-container {
+    gap: var(--dl-space-space-unit);
+    width: 100%;
+    height: auto;
+    display: flex;
+    padding: var(--dl-space-space-unit);
+    position: relative;
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  .app-component-text {
+    font-size: 32px;
+    align-self: flex-start;
+  }
+  .app-component-teamlist {
+    gap: var(--dl-space-space-halfunit);
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    padding: 0px;
+    align-self: center;
+    overflow-y: auto;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: flex-start;
+    scroll-behavior: auto;
+  }
+  .app-component-teamitem {
+    flex: 0 0 auto;
+    width: 100%;
+    height: auto;
+    display: flex;
+    padding: var(--dl-space-space-halfunit);
+    align-self: center;
+    align-items: flex-start;
+    border-width: 0px;
+    border-radius: 16px;
+    flex-direction: row;
+    background-color: #aaaaaa;
+  }
+  .app-component-text03 {
+    font-size: 24px;
+    align-self: flex-start;
+  }
+  .app-component-text06 {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    font-size: 16px;
+    align-self: flex-start;
+  }
+  .app-component-teamitemunfinished {
+    flex: 0 0 auto;
+    width: 100%;
+    height: auto;
+    display: flex;
+    padding: var(--dl-space-space-halfunit);
+    align-self: center;
+    align-items: flex-start;
+    border-width: 0px;
+    border-radius: 16px;
+    flex-direction: column;
+    background-color: #aaaaaa;
+  }
+  .app-component-textinput {
+    font-size: 24px;
+  }
+  .app-component-textinput1 {
+    font-size: 16px;
+  }
+  .app-component-button {
+    color: var(--dl-color-gray-white);
+    width: auto;
+    font-size: 24px;
+    font-style: normal;
+    margin-top: var(--dl-space-space-halfunit);
+    font-weight: 400;
+    border-color: #ffffff;
+    border-width: 0px;
+    background-color: var(--dl-color-primary-300);
+  }
+  .app-component-text12 {
+    font-size: 24px;
+  }
+  .app-component-button1 {
+    color: var(--dl-color-gray-white);
+    width: auto;
+    font-size: 32px;
+    align-self: center;
+    font-style: normal;
+    margin-top: var(--dl-space-space-halfunit);
+    font-weight: 400;
+    border-color: #ffffff;
+    border-width: 0px;
+    background-color: var(--dl-color-primary-300);
+  }
+  .app-component-text15 {
+    text-align: center;
+  }
+  .app-component-button2 {
+    color: var(--dl-color-gray-white);
+    width: 100%;
+    height: auto;
+    margin: 0px;
+    font-size: 32px;
+    align-self: center;
+    font-style: normal;
+    font-weight: 400;
+    border-color: #ffffff;
+    background-color: var(--dl-color-primary-300);
+  }
+  .app-component-text18 {
+    text-align: center;
+  }
+  @media(max-width: 991px) {
+    .app-component-text {
+      font-size: 32px;
+    }
+  }
+  @media(max-width: 479px) {
+    .app-component-text {
+      height: var(--dl-size-size-medium);
+      font-size: 32px;
+    }
+  }
+
+  .tworzenie-gry-button {
+    color: var(--dl-color-gray-white);
+    width: auto;
+    font-size: 32px;
+    align-self: center;
+    font-style: normal;
+    border-color: #ffffff00;
+    margin-top: var(--dl-space-space-halfunit);
+    margin-bottom: var(--dl-space-space-halfunit);
+    font-weight: 400;
+    background-color: var(--dl-color-primary-300);
+    text-align: center;
+    transition-duration:0.1s;
+  }
+  .tworzenie-gry-button:hover{
+    color: black;
+    background-color:#14a9ff;
+  }
+  .tworzenie-gry-button:active{
+    color: black;
+    background-color:#0e5985;
+  }
+  .tworzenie-gry-button-big {
+    color: var(--dl-color-gray-white);
+    width: 100%;
+    height: auto;
+    margin: 0px;
+    font-size: 32px;
+    align-self: center;
+    font-style: normal;
+    font-weight: 400;
+    border-color: #ffffff00;
+    background-color: var(--dl-color-primary-300);
+    text-align: center;
+    transition-duration:0.1s;
+  }
+  .tworzenie-gry-button-big:hover{
+    color: black;
+    background-color:#14a9ff;
+  }
+  .tworzenie-gry-button-big:active{
+    color: black;
+    background-color:#0e5985;
+  }
+  .player-container{
+    display: flex;
+    flex-direction: row;
+  }
+  .delete-button{
+    color: red;
+    font-size: 24px;
+
+  }
+  .delete-button:hover{
+    color: rgb(255, 58, 58);
+  }
+  .delete-button:active{
+    color: rgb(170, 0, 0);
+  }

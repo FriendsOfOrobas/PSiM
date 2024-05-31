@@ -1,9 +1,10 @@
 import React from 'react'
 
 import { Helmet } from 'react-helmet'
+import TeamList from '../components/TeamList'
 
-import AppComponent from '../components/component'
 import './tworzenie-gry.css'
+
 
 const TworzenieGry = (props) => {
   return (
@@ -20,54 +21,7 @@ const TworzenieGry = (props) => {
           </span>
           <input type="text" placeholder="placeholder" className="input" />
         </div>
-        <div className="app-component-container">
-      <span className="app-component-text">
-        <span>Zespoły</span>
-        <br></br>
-      </span>
-      <div className="app-component-teamlist">
-        <div className="app-component-teamitem button">
-          <span className="app-component-text03">
-            <span>Zespół 1</span>
-            <br></br>
-          </span>
-          <span className="app-component-text06">
-            <span>- Gracz 1</span>
-            <br></br>
-            <span>- Gracz 2</span>
-            <br></br>
-            <span>
-              <span
-                dangerouslySetInnerHTML={{
-                  __html: ' ',
-                }}
-              />
-            </span>
-          </span>
-        </div>
-        <div className="app-component-teamitemunfinished button">
-          <input
-            type="text"
-            placeholder="placeholder"
-            className="app-component-textinput input"
-          />
-          <input
-            type="text"
-            placeholder="placeholder"
-            className="app-component-textinput1 input"
-          />
-          <button type="button" className="tworzenie-gry-button button" style={{alignSelf:"flex-start"}}>
-            Dodaj kolejnego gracza
-          </button>
-          <button type="button" className="tworzenie-gry-button-big button">
-            Zaakceptuj zespół
-          </button>
-        </div>
-        <button type="button" className="tworzenie-gry-button-big button">
-          Dodaj zespół
-        </button>
-      </div>
-    </div>
+        <TeamList/>
         <div className="tworzenie-gry-container3">
           <span className="tworzenie-gry-text06">
             <span>Punkty</span>
