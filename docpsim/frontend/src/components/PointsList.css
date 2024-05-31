@@ -1,0 +1,134 @@
+.tworzenie-gry-container3 {
+    gap: var(--dl-space-space-unit);
+    width: 100%;
+    height: auto;
+    display: flex;
+    padding: var(--dl-space-space-unit);
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  .tworzenie-gry-text06 {
+    font-size: 32px;
+    align-self: flex-start;
+  }
+  .tworzenie-gry-teamlist {
+    gap: var(--dl-space-space-halfunit);
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    padding: 0px;
+    align-self: center;
+    overflow-y: auto;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: flex-start;
+    scroll-behavior: auto;
+  }
+  .tworzenie-gry-teamitem {
+    flex: 0 0 auto;
+    width: 100%;
+    height: auto;
+    display: flex;
+    padding: var(--dl-space-space-halfunit);
+    align-self: center;
+    align-items: flex-start;
+    border-width: 0px;
+    border-radius: 16px;
+    flex-direction: row;
+    background-color: #aaaaaa;
+  }
+  .tworzenie-gry-text09 {
+    font-size: 24px;
+    align-self: flex-start;
+  }
+  .tworzenie-gry-text12 {
+    width: 100%;
+    height: 100%;
+    font-size: 16px;
+    align-self: flex-start;
+  }
+  .tworzenie-gry-text16 {
+    width: 100%;
+    height: 100%;
+    font-size: 16px;
+    align-self: flex-end;
+    text-align: right;
+  }
+  .tworzenie-gry-teamitemunfinished {
+    flex: 0 0 auto;
+    width: 100%;
+    height: auto;
+    display: flex;
+    padding: var(--dl-space-space-halfunit);
+    align-self: center;
+    align-items: flex-start;
+    border-width: 0px;
+    border-radius: 16px;
+    flex-direction: column;
+    background-color: #aaaaaa;
+  }
+  .tworzenie-gry-textinput1 {
+    font-size: 24px;
+  }
+  .tworzenie-gry-container4 {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: row;
+  }
+  .tworzenie-gry-button {
+    color: var(--dl-color-gray-white);
+    width: auto;
+    font-size: 32px;
+    align-self: center;
+    font-style: normal;
+    border-color: #ffffff00;
+    margin-top: var(--dl-space-space-halfunit);
+    margin-bottom: var(--dl-space-space-halfunit);
+    font-weight: 400;
+    background-color: var(--dl-color-primary-300);
+    text-align: center;
+    transition-duration:0.1s;
+  }
+  .tworzenie-gry-button:hover{
+    color: black;
+    background-color:#14a9ff;
+  }
+  .tworzenie-gry-button:active{
+    color: black;
+    background-color:#0e5985;
+  }
+  .tworzenie-gry-button-big {
+    color: var(--dl-color-gray-white);
+    width: 100%;
+    height: auto;
+    margin: 0px;
+    font-size: 32px;
+    align-self: center;
+    font-style: normal;
+    font-weight: 400;
+    border-color: #ffffff00;
+    background-color: var(--dl-color-primary-300);
+    text-align: center;
+    transition-duration:0.1s;
+  }
+  .tworzenie-gry-button-big:hover{
+    color: black;
+    background-color:#14a9ff;
+  }
+  .tworzenie-gry-button-big:active{
+    color: black;
+    background-color:#0e5985;
+  }
+  .delete-button{
+    color: red;
+    font-size: 24px;
+
+  }
+  .delete-button:hover{
+    color: rgb(255, 58, 58);
+  }
+  .delete-button:active{
+    color: rgb(170, 0, 0);
+  }

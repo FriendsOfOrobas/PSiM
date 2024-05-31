@@ -2,6 +2,7 @@ import React from 'react'
 
 import { Helmet } from 'react-helmet'
 import TeamList from '../components/TeamList'
+import PointsList from '../components/PointsList'
 
 import './tworzenie-gry.css'
 
@@ -22,69 +23,7 @@ const TworzenieGry = (props) => {
           <input type="text" placeholder="placeholder" className="input" />
         </div>
         <TeamList/>
-        <div className="tworzenie-gry-container3">
-          <span className="tworzenie-gry-text06">
-            <span>Punkty</span>
-            <br></br>
-          </span>
-          <div className="tworzenie-gry-teamlist">
-            <div className="tworzenie-gry-teamitem button">
-              <span className="tworzenie-gry-text09">
-                <span>Punkt 1</span>
-                <br></br>
-              </span>
-              <span className="tworzenie-gry-text12">
-                <span>
-                  Punkt 1 znajduje się pod ławko w Parku przy ulicy
-                  Politechnicznej
-                </span>
-                <br></br>
-                <span>
-                  <span
-                    dangerouslySetInnerHTML={{
-                      __html: ' ',
-                    }}
-                  />
-                </span>
-              </span>
-              <span className="tworzenie-gry-text16">
-                <span>Punkt blokowany przez punkt nr 0</span>
-                <br></br>
-                <span>
-                  <span
-                    dangerouslySetInnerHTML={{
-                      __html: ' ',
-                    }}
-                  />
-                </span>
-              </span>
-            </div>
-            <div className="tworzenie-gry-teamitemunfinished button">
-              <input
-                type="text"
-                placeholder="Nazwa punktu"
-                className="tworzenie-gry-textinput1 input"
-              />
-              <textarea
-                placeholder="Opis punktu"
-                className="textarea"
-              ></textarea>
-              <div className="tworzenie-gry-container4">
-                <span>Punkt blokowany do odkrycia punktu nr </span>
-                <select>
-                  <option value="1">1</option>
-                  <option value="Option 2">2</option>
-                </select>
-              </div>
-              <button type="button" className="tworzenie-gry-button button">
-                Zaakceptuj punkt
-              </button>
-            </div>
-            <button type="button" className="tworzenie-gry-button-big button">
-              Dodaj punkt
-            </button>
-          </div>
-        </div>
+        <PointsList/>
         <div className="tworzenie-gry-container5">
           <span className="tworzenie-gry-text27">
             <span>Osiągnięcia</span>
