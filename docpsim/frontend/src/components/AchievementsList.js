@@ -4,7 +4,7 @@ import "./AchievementsList.css"
 import AchievementsListFinished from './AchievementsListFinished'
 import AchievementsListUnfinished from "./AchievementsListUnfinished"
 
-const AchievementsList = () => {
+const AchievementsList = ({updateHandler}) => {
     const [finished, setFinished] = useState([])
     const [unfinished, setUnfinished] = useState([''])
 
@@ -13,7 +13,8 @@ const AchievementsList = () => {
         newUnfinished.splice(i, 1); 
         setUnfinished(newUnfinished);
 
-        setFinished([...finished,data]);        
+        setFinished([...finished,data]);  
+        updateHandler([...finished,data])         
     }
 
     const handleAddAchievement = () =>{
@@ -24,6 +25,7 @@ const AchievementsList = () => {
         const newFinished = [...finished]; 
         newFinished.splice(i, 1); 
         setFinished(newFinished);
+        updateHandler(newFinished)     
     }
   return (
     <div className="tworzenie-gry-container5">

@@ -3,7 +3,7 @@ import './PointsList.css'
 import PointsListFinished from './PointsListFinished'
 import PointsListUnfinished from './PointsListUnfinished'
 
-const PointsList = () => {
+const PointsList = ({updateHandler}) => {
     const [finished, setFinished] = useState([])
     const [unfinished, setUnfinished] = useState([''])
 
@@ -12,7 +12,8 @@ const PointsList = () => {
         newUnfinished.splice(i, 1); 
         setUnfinished(newUnfinished);
 
-        setFinished([...finished,data]);        
+        setFinished([...finished,data]); 
+        updateHandler([...finished,data])         
     }
 
     const handleAddPoint = () =>{
@@ -30,6 +31,7 @@ const PointsList = () => {
             }
         })
         setFinished(newFinished);
+        updateHandler(newFinished)   
     }
   return (
     <div className="tworzenie-gry-container3">

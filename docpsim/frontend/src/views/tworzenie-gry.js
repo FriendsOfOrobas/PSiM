@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 
 import { Helmet } from 'react-helmet'
 import TeamList from '../components/TeamList'
@@ -9,6 +9,21 @@ import './tworzenie-gry.css'
 
 
 const TworzenieGry = (props) => {
+  const [name,setName] = useState('')
+  const [teamsFinished,setTeamsFinished] = useState([])
+  const [pointsFinished,setPointsFinished] = useState([])
+  const [achievementsFinished,setAchievementsFinished] = useState([])
+
+  const updateTeams = (newTeams) =>{
+    setTeamsFinished(newTeams)
+  }
+  const updatePoints = (newPoints) =>{
+    setPointsFinished(newPoints)
+  }
+  const updateAchievements = (newAchievements) =>{
+    setAchievementsFinished(newAchievements)
+  }
+
   return (
     <>
       <Helmet>
@@ -19,13 +34,16 @@ const TworzenieGry = (props) => {
         <div className="tworzenie-gry-container2">
           <span className="tworzenie-gry-text03">
             <span>Nazwa gry</span>
-            <br></br>
           </span>
-          <input type="text" placeholder="placeholder" className="input" />
+          <input 
+          type="text" 
+          placeholder="placeholder" 
+          className="input" 
+          onChange={(e) => {setName(e.target.value)}}/>
         </div>
-        <TeamList/>
-        <PointsList/>
-        <AchievementsList/>
+        <TeamList updateHandler={updateTeams}/>
+        <PointsList updateHandler={updatePoints}/>
+        <AchievementsList updateHandler={updateAchievements}/>
         <button type="button" className="tworzenie-gry-button-big button">
           Zaakceptuj grę
         </button>

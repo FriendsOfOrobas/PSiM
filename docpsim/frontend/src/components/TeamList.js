@@ -3,7 +3,7 @@ import './TeamList.css'
 import TeamListFinished from './TeamListFinished'
 import TeamListUnfinished from './TeamListUnfinished'
 
-const TeamList = () => {
+const TeamList = ({updateHandler}) => {
     const [finished, setFinished] = useState([])
     const [unfinished, setUnfinished] = useState([''])
 
@@ -12,7 +12,8 @@ const TeamList = () => {
         newUnfinished.splice(i, 1); 
         setUnfinished(newUnfinished);
 
-        setFinished([...finished,data]);        
+        setFinished([...finished,data]); 
+        updateHandler([...finished,data])          
     }
 
     const handleAddTeam = () =>{
@@ -23,6 +24,7 @@ const TeamList = () => {
         const newFinished = [...finished]; 
         newFinished.splice(i, 1); 
         setFinished(newFinished);
+        updateHandler(newFinished)   
     }
 
   return (
