@@ -29,7 +29,7 @@ const PointsListUnfinished = ({itemID, outsideHandler, existingPoints}) => {
           </select>
         </div>
         <button type="button" className="tworzenie-gry-button button"
-         onClick={(e) => {outsideHandler(itemID,{"name":name,"description":description,"block":block})}}>
+         onClick={(e) => {outsideHandler(itemID,{"name":name,"description":description,"previous":Number(block)})}}>
           Zaakceptuj punkt
         </button>
       </div>

@@ -1,0 +1,200 @@
+{
+  "games": [
+    {
+      "id": "2",
+      "game": {
+        "id": 2,
+        "name": "Adventure Quest",
+        "description": "An epic journey through magical lands.",
+        "game_admin_id": 101,
+        "max_team_size": 5
+      },
+      "checkpoints": [
+        {
+          "id": 2,
+          "name": "Enchanted Forest",
+          "description": "Navigate through the dense and magical forest.",
+          "previous": -1
+        },
+        {
+          "id": 3,
+          "name": "Mystic River",
+          "description": "Cross the mystic river with your team.",
+          "previous": 2
+        }
+      ],
+      "achievements": [
+        {
+          "id": 2,
+          "name": "Forest Explorer",
+          "description": "Completed the Enchanted Forest checkpoint.",
+          "bonus": 50,
+          "treshold": 100,
+          "checkpoint_id": 2
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "game": {
+        "id": 3,
+        "name": "Space Odyssey",
+        "description": "Explore the vastness of space.",
+        "game_admin_id": 102,
+        "max_team_size": 4
+      },
+      "checkpoints": [
+        {
+          "id": 4,
+          "name": "Lunar Base",
+          "description": "Establish a base on the moon.",
+          "previous": 3
+        },
+        {
+          "id": 5,
+          "name": "Asteroid Belt",
+          "description": "Navigate through the asteroid belt safely.",
+          "previous": 4
+        },
+        {
+          "id": 6,
+          "name": "Mars Colony",
+          "description": "Set up a colony on Mars.",
+          "previous": 5
+        }
+      ],
+      "achievements": [
+        {
+          "id": 3,
+          "name": "Lunar Pioneer",
+          "description": "Successfully set up the Lunar Base.",
+          "bonus": 100,
+          "treshold": 200,
+          "checkpoint_id": 4
+        },
+        {
+          "id": 4,
+          "name": "Asteroid Navigator",
+          "description": "Safely navigated the asteroid belt.",
+          "bonus": 150,
+          "treshold": 300,
+          "checkpoint_id": 5
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "game": {
+        "id": 4,
+        "name": "Treasure Hunt",
+        "description": "Find the hidden treasures around the world.",
+        "game_admin_id": 103,
+        "max_team_size": 3
+      },
+      "checkpoints": [
+        {
+          "id": 7,
+          "name": "Ancient Ruins",
+          "description": "Solve puzzles to uncover ancient secrets.",
+          "previous": 6
+        }
+      ],
+      "achievements": [
+        {
+          "id": 5,
+          "name": "Ruins Raider",
+          "description": "Discovered the secrets of the Ancient Ruins.",
+          "bonus": 75,
+          "treshold": 150,
+          "checkpoint_id": 7
+        },
+        {
+          "id": 6,
+          "name": "Treasure Finder",
+          "description": "Found the hidden treasure in the ruins.",
+          "bonus": 200,
+          "treshold": 400,
+          "checkpoint_id": 7
+        },
+        {
+          "id": 7,
+          "name": "Master Solver",
+          "description": "Solved all puzzles in the Ancient Ruins.",
+          "bonus": 300,
+          "treshold": 600,
+          "checkpoint_id": 7
+        }
+      ]
+    },
+    {
+      "id": "4fd8",
+      "game": {
+        "name": "dasadssad",
+        "description": "adsadsads",
+        "max_team_size": 13,
+        "game_admin_id": 1
+      },
+      "checkpoints": [
+        {
+          "name": "pkt1",
+          "description": "opkt1",
+          "previous": -1
+        },
+        {
+          "name": "pkt2",
+          "description": "opkt2",
+          "previous": 0
+        }
+      ],
+      "achievements": [
+        {
+          "title": "sfdasfg",
+          "description": "adsfsasf",
+          "treshold": 123,
+          "bonus": 1234321
+        },
+        {
+          "title": "aaa",
+          "description": "ssss",
+          "point": 1,
+          "bonus": 22
+        }
+      ]
+    },
+    {
+      "id": "740f",
+      "game": {
+        "name": "gra_n",
+        "description": "eee",
+        "max_team_size": 33,
+        "game_admin_id": 1
+      },
+      "checkpoints": [
+        {
+          "name": "adsads",
+          "description": "asdasdads",
+          "previous": -1
+        },
+        {
+          "name": "afsfasd",
+          "description": "fdsdfsdsfdfsdfffffffffffffffffffffffffffffffffffffff",
+          "previous": 0
+        }
+      ],
+      "achievements": [
+        {
+          "title": "wwww",
+          "description": "wwww",
+          "treshold": 33,
+          "bonus": 33
+        },
+        {
+          "title": "aaa",
+          "description": "aaa",
+          "point": 1,
+          "bonus": 33333
+        }
+      ]
+    }
+  ]
+}

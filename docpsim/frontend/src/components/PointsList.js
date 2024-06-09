@@ -24,10 +24,10 @@ const PointsList = ({updateHandler}) => {
         const newFinished = [...finished]; 
         newFinished.splice(i, 1); 
         newFinished.map((entry)=>{
-            if (i < Number(entry["block"])) {
-                entry["block"] = Number(entry["block"]) - 1
-            } else if(i === Number(entry["block"])) {
-                entry["block"] = -1
+            if (i < Number(entry["previous"])) {
+                entry["previous"] = Number(entry["previous"]) - 1
+            } else if(i === Number(entry["previous"])) {
+                entry["previous"] = -1
             }
         })
         setFinished(newFinished);
@@ -47,7 +47,7 @@ const PointsList = ({updateHandler}) => {
             handleDelete={handleDeleteFinished}
             name={data["name"]} 
             description={data["description"]}
-            block={data["block"]}/>
+            block={data["previous"]}/>
         ))}
         {unfinished.map((input, index)=>(
             <PointsListUnfinished 

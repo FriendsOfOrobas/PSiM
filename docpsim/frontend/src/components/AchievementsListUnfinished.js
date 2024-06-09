@@ -15,15 +15,15 @@ const AchievementsListUnfinished = ({itemID, outsideHandler}) => {
             response = {
                 "title": title,
                 "description": description,
-                "treshold": treshold,
-                "bonus": bonus
+                "treshold": Number(treshold),
+                "bonus": Number(bonus)
             }
         } else {
             response = {
                 "title": title,
                 "description": description,
-                "point": point,
-                "bonus": bonus
+                "point": Number(point),
+                "bonus": Number(bonus)
             }
         }
         console.log(response)
