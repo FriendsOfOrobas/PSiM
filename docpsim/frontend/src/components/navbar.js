@@ -15,7 +15,7 @@ const GreetingText = ({team, player, point}) => {
   }
 }
 
-const ButtonContainer = ({location}) => {
+const ButtonContainer = ({location,handleLogout}) => {
   if (location === "/" || location === "/logowanie"|| location === "/rejestracja") {
     return (
       <Link to="/" type="button" className="zespol-button" style={{fontSize: "40px"}}>
@@ -36,7 +36,7 @@ const ButtonContainer = ({location}) => {
             Gra
         </Link>
       </div>
-      <Link to="/" type="button" className="zespol-button">
+      <Link to="/" type="button" className="zespol-button" onClick={handleLogout}>
             Wyloguj
       </Link>
       </>
@@ -44,10 +44,10 @@ const ButtonContainer = ({location}) => {
   }
 }
 
-const Navbar = ({team="empty", player="empty", point="empty", location}) => {
+const Navbar = ({team="empty", player="empty", point="empty", location, handleLogout}) => {
   return (
     <div className="zespol-navbar">
-      <GreetingText team={team} player={player} point={point}/>
+      <GreetingText team={team} player={player} point={point} handleLogout={handleLogout}/>
       <ButtonContainer location={location} />
     </div>
   )

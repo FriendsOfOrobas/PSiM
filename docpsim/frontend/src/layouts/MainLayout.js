@@ -2,25 +2,25 @@ import React from 'react'
 import {Outlet, useLocation} from 'react-router-dom'
 import Navbar from '../components/navbar'
 
-const NavbarLocalizer = ({location}) => {
-  if (location === "/gracz") {
-    
-    return <Navbar player={"defau"} location={location}/>
+const NavbarLocalizer = ({location,logout,username}) => {
+  if (location === "/gracz"|| location === "/moje-gry") { 
+    return <Navbar player={username} location={location} handleLogout={logout}/>
   } else if(location === "/zespol") {
-    return <Navbar team={"defaut"} location={location}/>
+    return <Navbar team={"username"} location={location} handleLogout={logout}/>
   } else if (location === "/punkt" || location === "/punkt-admin") {
-    return <Navbar point={"defaul"} location={location}/>
+    return <Navbar point={"username"} location={location} handleLogout={logout}/>
   } else {
-    return <Navbar location={location}/>
+    return <Navbar location={location} handleLogout={logout}/>
   }
 }
 
-function MainLayout() {
+function MainLayout({logoutFunc,user}) {
   const location = useLocation();
   console.log(location.pathname);
+
   return (
     <>
-        <NavbarLocalizer location={location.pathname}/>
+        <NavbarLocalizer location={location.pathname} logout={logoutFunc} username={user=={}?'':user["username"]}/>
         <Outlet />
     </>
   )

@@ -1,12 +1,12 @@
 {
   "games": [
     {
-      "id": "2",
+      "id": 2,
       "game": {
         "id": 2,
         "name": "Adventure Quest",
         "description": "An epic journey through magical lands.",
-        "game_admin_id": 101,
+        "game_admin_id": 1,
         "max_team_size": 5
       },
       "checkpoints": [
@@ -35,12 +35,12 @@
       ]
     },
     {
-      "id": "3",
+      "id": 3,
       "game": {
         "id": 3,
         "name": "Space Odyssey",
         "description": "Explore the vastness of space.",
-        "game_admin_id": 102,
+        "game_admin_id": 1,
         "max_team_size": 4
       },
       "checkpoints": [
@@ -83,12 +83,12 @@
       ]
     },
     {
-      "id": "4",
+      "id": 4,
       "game": {
         "id": 4,
         "name": "Treasure Hunt",
         "description": "Find the hidden treasures around the world.",
-        "game_admin_id": 103,
+        "game_admin_id": 1,
         "max_team_size": 3
       },
       "checkpoints": [
@@ -127,7 +127,7 @@
       ]
     },
     {
-      "id": "4fd8",
+      "id": 5,
       "game": {
         "name": "dasadssad",
         "description": "adsadsads",
@@ -162,7 +162,7 @@
       ]
     },
     {
-      "id": "740f",
+      "id": 6,
       "game": {
         "name": "gra_n",
         "description": "eee",
@@ -195,6 +195,18 @@
           "bonus": 33333
         }
       ]
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "username": "admin",
+      "password": "admin"
+    },
+    {
+      "id": "5768",
+      "username": "abcd",
+      "password": "abcd"
     }
   ]
 }

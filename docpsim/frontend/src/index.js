@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { createRoot } from "react-dom/client";
 
 import {
@@ -22,24 +22,48 @@ import Home from './views/home'
 import NotFound from './views/not-found'
 import MainLayout from './layouts/MainLayout'
 
-const router = createBrowserRouter(
-  createRoutesFromElements(
-  <Route element={<MainLayout/>} path="/" >
-        <Route element={<Punkt/>} path="/punkt" />
-        <Route element={<PunktAdmin/>} path="/punkt-admin" />
-        <Route element={<Logowanie/>}  path="/logowanie" />
-        <Route element={<Gracz/>}  path="/gracz" />
-        <Route element={<MojeGry/>}  path="/moje-gry" />
-        <Route element={<TworzenieGry/>}  path="/tworzenie-gry" />
-        <Route element={<Rejestracja/>}  path="/rejestracja" />
-        <Route element={<Zespol/>}  path="/zespol" />
-        <Route element={<Home />}  index />
-        <Route element={<NotFound/>} path="*" />
-  </Route>
-  )
-)
+
 
 const App = () => {
+  const [user,setUser] = useState({})
+
+
+  const logIn = async(data) =>{
+    const res = await fetch("http://localhost:8000/users?username="+data["username"])
+    const res_data = await res.json()
+    if (res_data == false) {
+      return false
+    }
+    const user = res_data[0]
+    if (user["password"] === data["password"]) {
+      setUser(data)
+      return true
+    }else{
+      return false
+    }
+  }
+
+  const logOut = () =>{
+    setUser({})
+  }
+
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+    <Route element={<MainLayout logoutFunc={logOut} user={user}/>} path="/" >
+          <Route element={<Punkt/>} path="/punkt" />
+          <Route element={<PunktAdmin/>} path="/punkt-admin" />
+          <Route element={<Logowanie loginFunc={logIn}/>}  path="/logowanie" />
+          <Route element={<Gracz/>}  path="/gracz" />
+          <Route element={<MojeGry/>}  path="/moje-gry" />
+          <Route element={<TworzenieGry/>}  path="/tworzenie-gry" />
+          <Route element={<Rejestracja/>}  path="/rejestracja" />
+          <Route element={<Zespol/>}  path="/zespol" />
+          <Route element={<Home />}  index />
+          <Route element={<NotFound/>} path="*" />
+    </Route>
+    )
+  )
+
   return <RouterProvider router={router}/>;
   
 }
