@@ -34,9 +34,9 @@ const App = () => {
     if (res_data == false) {
       return false
     }
-    const user = res_data[0]
-    if (user["password"] === data["password"]) {
-      setUser(data)
+    const res_user = res_data[0]
+    if (res_user["password"] === data["password"]) {
+      setUser(res_user)
       return true
     }else{
       return false
@@ -54,8 +54,8 @@ const App = () => {
           <Route element={<PunktAdmin/>} path="/punkt-admin" />
           <Route element={<Logowanie loginFunc={logIn}/>}  path="/logowanie" />
           <Route element={<Gracz/>}  path="/gracz" />
-          <Route element={<MojeGry/>}  path="/moje-gry" />
-          <Route element={<TworzenieGry/>}  path="/tworzenie-gry" />
+          <Route element={<MojeGry user={user}/>}  path="/moje-gry" />
+          <Route element={<TworzenieGry user={user}/>}  path="/tworzenie-gry" />
           <Route element={<Rejestracja/>}  path="/rejestracja" />
           <Route element={<Zespol/>}  path="/zespol" />
           <Route element={<Home />}  index />

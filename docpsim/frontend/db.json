@@ -195,6 +195,104 @@
           "bonus": 33333
         }
       ]
+    },
+    {
+      "id": "a4dc",
+      "game": {
+        "name": "abcd_game",
+        "description": "sss",
+        "max_team_size": 23
+      },
+      "checkpoints": [
+        {
+          "name": "ewarf",
+          "description": "afsdafs",
+          "previous": -1
+        },
+        {
+          "name": "km",
+          "description": "adssad",
+          "previous": 0
+        }
+      ],
+      "achievements": [
+        {
+          "title": "ffdas",
+          "description": "dsfdsfsd",
+          "treshold": 22,
+          "bonus": 22
+        },
+        {
+          "title": "adsasd",
+          "description": "adsasd",
+          "point": 1,
+          "bonus": 24422454
+        }
+      ]
+    },
+    {
+      "id": "e48a",
+      "game": {
+        "name": "abcd_game_pls",
+        "description": "dasads",
+        "max_team_size": 22,
+        "game_admin_id": "5768"
+      },
+      "checkpoints": [
+        {
+          "name": "dfsdsfa",
+          "description": "sdfdfsafdsa",
+          "previous": -1
+        },
+        {
+          "name": "fdssdf",
+          "description": "sdfafdsadfsa",
+          "previous": 0
+        }
+      ],
+      "achievements": [
+        {
+          "title": "dsfaf",
+          "description": "dfsafdsa",
+          "treshold": 22,
+          "bonus": 22
+        },
+        {
+          "title": "wqeqeweqw",
+          "description": "eqwqwe",
+          "point": 1,
+          "bonus": 334432
+        }
+      ]
+    },
+    {
+      "id": "616e",
+      "game": {
+        "name": "dddd",
+        "description": "dddd",
+        "max_team_size": 222,
+        "game_admin_id": "5768"
+      },
+      "checkpoints": [
+        {
+          "name": "wqewad",
+          "description": "asdssssss",
+          "previous": -1
+        },
+        {
+          "name": "fsa",
+          "description": "fsa",
+          "previous": -1
+        }
+      ],
+      "achievements": [
+        {
+          "title": "awfafw",
+          "description": "afsw",
+          "treshold": 0,
+          "bonus": 0
+        }
+      ]
     }
   ],
   "users": [

@@ -9,7 +9,7 @@ import AchievementsList from '../components/AchievementsList'
 import './tworzenie-gry.css'
 
 
-const TworzenieGry = (props) => {
+const TworzenieGry = ({user}) => {
   const [name,setName] = useState('')
   const [description,setDescription] = useState('')
   const [teamSize,setTeamSize] = useState(1)
@@ -40,12 +40,13 @@ const TworzenieGry = (props) => {
   }
 
   const submitGame = () =>{
+    console.log(user)
     const gameData = {
       "game":{
       name,
       description,
       "max_team_size":Number(teamSize),
-      "game_admin_id":1
+      "game_admin_id":user["id"]
     },
       "checkpoints":pointsFinished,
       "achievements":achievementsFinished
