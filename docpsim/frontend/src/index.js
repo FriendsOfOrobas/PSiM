@@ -13,7 +13,7 @@ import './style.css'
 import Punkt from './views/punkt'
 import PunktAdmin from './views/punkt-admin'
 import Logowanie from './views/logowanie'
-import Gracz from './views/gracz'
+import Gra from './views/gra'
 import MojeGry from './views/moje-gry'
 import TworzenieGry from './views/tworzenie-gry'
 import Rejestracja from './views/rejestracja'
@@ -26,6 +26,8 @@ import MainLayout from './layouts/MainLayout'
 
 const App = () => {
   const [user,setUser] = useState({})
+  const [game,setGame] = useState({})
+  const [team,setTeam] = useState({})
 
 
   const logIn = async(data) =>{
@@ -47,14 +49,18 @@ const App = () => {
     setUser({})
   }
 
+  const changeCurrentGame = (game) =>{
+    setGame(game)
+  }
+
   const router = createBrowserRouter(
     createRoutesFromElements(
     <Route element={<MainLayout logoutFunc={logOut} user={user}/>} path="/" >
           <Route element={<Punkt/>} path="/punkt" />
           <Route element={<PunktAdmin/>} path="/punkt-admin" />
           <Route element={<Logowanie loginFunc={logIn}/>}  path="/logowanie" />
-          <Route element={<Gracz/>}  path="/gracz" />
-          <Route element={<MojeGry user={user}/>}  path="/moje-gry" />
+          <Route element={<Gra game={game}/>}  path="/gra" />
+          <Route element={<MojeGry user={user} gameChanger={changeCurrentGame}/>}  path="/moje-gry" />
           <Route element={<TworzenieGry user={user}/>}  path="/tworzenie-gry" />
           <Route element={<Rejestracja/>}  path="/rejestracja" />
           <Route element={<Zespol/>}  path="/zespol" />

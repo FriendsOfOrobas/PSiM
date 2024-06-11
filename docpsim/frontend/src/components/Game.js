@@ -1,15 +1,20 @@
 import React from 'react'
+import {useNavigate} from 'react-router-dom'
 
 import './Game.css'
 
-const Game = ({title,description,id=0}) => {
+const Game = ({game,gameChanger}) => {
+    const navigate = useNavigate()
   return (
-    <div className="moje-gry-gameitem button">
+    <div className="moje-gry-gameitem button" onClick={(e)=>{
+        gameChanger(game)
+        return navigate('/gra')
+    }}>
       <span className="moje-gry-text06">
-        <span>{title}</span>
+        <span>{game.game["name"]}</span>
       </span>
       <span className="moje-gry-text09">
-        {description}
+        {game.game["description"]}
       </span>
     </div>
   )

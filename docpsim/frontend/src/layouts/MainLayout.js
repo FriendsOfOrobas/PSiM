@@ -3,7 +3,7 @@ import {Outlet, useLocation} from 'react-router-dom'
 import Navbar from '../components/navbar'
 
 const NavbarLocalizer = ({location,logout,username}) => {
-  if (location === "/gracz"|| location === "/moje-gry") { 
+  if (location === "/gra"|| location === "/moje-gry") { 
     return <Navbar player={username} location={location} handleLogout={logout}/>
   } else if(location === "/zespol") {
     return <Navbar team={"username"} location={location} handleLogout={logout}/>

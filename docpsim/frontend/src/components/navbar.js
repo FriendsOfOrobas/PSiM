@@ -32,7 +32,7 @@ const ButtonContainer = ({location,handleLogout}) => {
         <Link to="/zespol" type="button" className="zespol-button">
             Mój zespół
         </Link>
-        <Link to="/gracz" type="button" className="zespol-button">
+        <Link to="/gra" type="button" className="zespol-button">
             Gra
         </Link>
       </div>

@@ -7,7 +7,7 @@ import './moje-gry.css'
 
 import Game from '../components/Game'
 
-const MojeGry = ({user}) => {
+const MojeGry = ({user,gameChanger}) => {
   const [admins,setAdmins] = useState([])
   const [users,setUsers] = useState([])
 
@@ -40,7 +40,7 @@ const MojeGry = ({user}) => {
           </span>
           <div className="moje-gry-gameslist1">
             {admins.map((game,index) =>(
-              <Game key={index} title={game.game["name"]} description={game.game["description"]} id={game["id"]} />
+              <Game key={index} game={game} gameChanger={gameChanger}/>
             ))}
           </div>
           <Link to="/tworzenie-gry" type="button" className="moje-gry-button button">
@@ -53,7 +53,7 @@ const MojeGry = ({user}) => {
           </span>
           <div className="moje-gry-gameslist1">
             {users.map((game,index) =>(
-              <Game key={index} title={game.game["name"]} description={game.game["description"]} id={game["id"]} />
+              <Game key={index} game={game} gameChanger={gameChanger}/>
             ))}
           </div>
         </div>

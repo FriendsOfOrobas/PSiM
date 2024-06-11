@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import {useNavigate} from 'react-router-dom'
+import { v4 as uuidv4 } from 'uuid';
 
 import { Helmet } from 'react-helmet'
 import TeamList from '../components/TeamList'
@@ -39,9 +40,21 @@ const TworzenieGry = ({user}) => {
     return;
   }
 
+  const teamPOSTRequest = async(newTeam) =>{
+    const res = await fetch("http://localhost:8000/teams",{
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(newTeam)
+    });
+    return;
+  }
+
   const submitGame = () =>{
-    console.log(user)
+    const id = uuidv4()
     const gameData = {
+      id,
       "game":{
       name,
       description,
@@ -51,6 +64,14 @@ const TworzenieGry = ({user}) => {
       "checkpoints":pointsFinished,
       "achievements":achievementsFinished
     }
+    teamsFinished.map((team) => {
+      const teamData = {
+        "game_id":id,
+        "name":team["name"],
+        "players":team["players"]
+      }
+      teamPOSTRequest(teamData)
+    })
 
     gamePOSTRequest(gameData)
     return navigate('/moje-gry')

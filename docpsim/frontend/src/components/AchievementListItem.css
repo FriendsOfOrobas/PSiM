@@ -1,4 +1,4 @@
-  .moje-gry-gameitem {
+.achievement-item {
     flex: 0 0 auto;
     width: 100%;
     height: auto;
@@ -6,25 +6,20 @@
     padding: var(--dl-space-space-halfunit);
     align-self: center;
     align-items: flex-start;
+    margin-bottom: 2px;
     border-width: 0px;
     border-radius: 16px;
     flex-direction: column;
     background-color: #aaaaaa;
     transition-duration:0.1s;
   }
-  .moje-gry-gameitem:hover{
+  .achievement-item:hover{
     background-color: #bcbcbc;
   }
-  .moje-gry-gameitem:active{
+  .achievement-item:active{
     background-color: #808080;
   }
-  .moje-gry-text06 {
-    font-size: 24px;
-    align-self: flex-start;
-  }
-  .moje-gry-text09 {
-    width: 100%;
-    height: 100%;
-    font-size: 16px;
-    align-self: flex-start;
+  .achievement-text-container{
+    display: flex;
+    flex-direction: column;
   }

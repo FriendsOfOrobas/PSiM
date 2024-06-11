@@ -293,6 +293,35 @@
           "bonus": 0
         }
       ]
+    },
+    {
+      "id": "68362d7d-cee8-4840-8fa9-f5a75b7bcc4d",
+      "game": {
+        "name": "teamspls",
+        "description": "sss",
+        "max_team_size": 123,
+        "game_admin_id": "5768"
+      },
+      "checkpoints": [
+        {
+          "name": "a",
+          "description": "a",
+          "previous": -1
+        },
+        {
+          "name": "d",
+          "description": "d",
+          "previous": -1
+        }
+      ],
+      "achievements": [
+        {
+          "title": "d",
+          "description": "d",
+          "treshold": 2,
+          "bonus": 3
+        }
+      ]
     }
   ],
   "users": [
@@ -305,6 +334,34 @@
       "id": "5768",
       "username": "abcd",
       "password": "abcd"
+    }
+  ],
+  "teams": [
+    {
+      "name": "blank",
+      "players": [
+        "a",
+        "b"
+      ]
+    },
+    {
+      "id": "7111",
+      "game_id": "68362d7d-cee8-4840-8fa9-f5a75b7bcc4d",
+      "name": "dd",
+      "players": [
+        "dd",
+        "dd"
+      ]
+    },
+    {
+      "id": "c298",
+      "game_id": "68362d7d-cee8-4840-8fa9-f5a75b7bcc4d",
+      "name": "aa",
+      "players": [
+        "aa",
+        "aa",
+        "aaa"
+      ]
     }
   ]
 }
