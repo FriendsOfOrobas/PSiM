@@ -47,8 +47,8 @@ const ButtonContainer = ({location,handleLogout}) => {
 const Navbar = ({team="empty", player="empty", point="empty", location, handleLogout}) => {
   return (
     <div className="zespol-navbar">
-      <GreetingText team={team} player={player} point={point} handleLogout={handleLogout}/>
-      <ButtonContainer location={location} />
+      <GreetingText team={team} player={player} point={point}/>
+      <ButtonContainer location={location} handleLogout={handleLogout}/>
     </div>
   )
 }

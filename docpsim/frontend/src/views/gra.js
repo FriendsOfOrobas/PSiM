@@ -6,9 +6,12 @@ import AchievementListItem from '../components/AchievementListItem'
 
 import './gra.css'
 
-const Gra = ({game,name}) => {
-  const points = game["checkpoints"]
-  const achievements = game["achievements"]
+const Gra = ({game = {}, admin=false, user = {}}) => {
+  console.log(typeof game)
+  const points = Object.keys(game).length === 0 ? [] :game["checkpoints"]
+  const achievements = Object.keys(game).length === 0 ? [] :game["achievements"]
+  const is_admin = Object.keys(game).length === 0 || Object.keys(user).length === 0 ? false : game.game["game_admin_id"] == user["id"]
+  const name = Object.keys(game).length === 0 ? 'Brak gry!' : game.game["name"]
 
   return (
     <>
@@ -19,8 +22,9 @@ const Gra = ({game,name}) => {
       
       <div className='gra-container'>
       <span className="gracz-text06">
-        <span>{game.game["name"]}</span>
+        <span>{name}</span>
       </span>
+     {Object.keys(game).length === 0 || Object.keys(user).length === 0?'':
       <div className="gracz-container1">
         <div className="gracz-container2">
           <div className="gracz-container3">
@@ -30,7 +34,7 @@ const Gra = ({game,name}) => {
             </h1>
             <ul className="list gracz-ul">
               {points.map((point, index) => (
-                <PointListItem key={index} point={point}/>
+                <PointListItem key={index} point={point} user={user} admin={is_admin}/>
               ))}
             </ul>
           </div>
@@ -41,7 +45,7 @@ const Gra = ({game,name}) => {
             </h1>
             <ul className="list gracz-ul1">
             {points.map((point, index) => (
-                <PointListItem key={index} point={point}/>
+                <PointListItem key={index} point={point} user={user} admin={is_admin}/>
               ))}
             </ul>
           </div>
@@ -55,7 +59,7 @@ const Gra = ({game,name}) => {
           
           </ul>
         </div>
-      </div>
+      </div>}
       </div>
     </>
   )

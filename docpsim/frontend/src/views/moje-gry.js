@@ -15,13 +15,16 @@ const MojeGry = ({user,gameChanger}) => {
     const fetchGames = async() =>{
       const res = await fetch("http://localhost:8000/games")
       const data = await res.json()
-
+      const userGames = data.filter((game) => {
+        return game.game["game_admin_id"] !== user["id"]
+      })
       setAdmins(data.filter((game) => {
         return game.game["game_admin_id"] === user["id"]
       }))
-      setUsers(data.filter((game) => {
-        return game.game["game_admin_id"] !== user["id"]
-      }))
+      setUsers(userGames)
+      if (userGames != []) {
+        gameChanger(userGames[0],true)
+      } 
     }
 
     fetchGames()

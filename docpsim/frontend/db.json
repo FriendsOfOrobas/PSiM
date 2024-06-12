@@ -363,5 +363,14 @@
         "aaa"
       ]
     }
+  ],
+  "comments":[
+    {
+      "id":1,
+      "checkpoint_id": "68362d7d-cee8-4840-8fa9-f5a75b7bcc4d",
+      "author_id": 1,
+      "comment": "aaaaaaaaaaaaaaaaaaaaaaaa",
+      "date_time": "1718147530"
+    }
   ]
 }

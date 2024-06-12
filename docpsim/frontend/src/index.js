@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { createRoot } from "react-dom/client";
 
 import {
@@ -25,10 +25,21 @@ import MainLayout from './layouts/MainLayout'
 
 
 const App = () => {
-  const [user,setUser] = useState({})
-  const [game,setGame] = useState({})
-  const [team,setTeam] = useState({})
+  const [user,setUser] = useState(() => JSON.parse(sessionStorage.getItem('user') ?? '{}'))
+  const [game,setGame] = useState(() => JSON.parse(sessionStorage.getItem('game') ?? '{}'))
+  const [team,setTeam] = useState(() => JSON.parse(sessionStorage.getItem('team') ?? '{}'))
 
+  useEffect(()=>{
+    sessionStorage.setItem('user',JSON.stringify(user))
+  },[user])
+
+  useEffect(()=>{
+    sessionStorage.setItem('game',JSON.stringify(game))
+  },[game])
+
+  useEffect(()=>{
+    sessionStorage.setItem('team',JSON.stringify(team))
+  },[team])
 
   const logIn = async(data) =>{
     const res = await fetch("http://localhost:8000/users?username="+data["username"])
@@ -47,10 +58,18 @@ const App = () => {
 
   const logOut = () =>{
     setUser({})
+    setGame({})
   }
 
-  const changeCurrentGame = (game) =>{
-    setGame(game)
+  const changeCurrentGame = (newGame, first = false) =>{
+    if(first){
+      if (game == {}) {
+        setGame(newGame)
+      } 
+    }else{
+      setGame(newGame)
+    }
+
   }
 
   const router = createBrowserRouter(
@@ -59,7 +78,7 @@ const App = () => {
           <Route element={<Punkt/>} path="/punkt" />
           <Route element={<PunktAdmin/>} path="/punkt-admin" />
           <Route element={<Logowanie loginFunc={logIn}/>}  path="/logowanie" />
-          <Route element={<Gra game={game}/>}  path="/gra" />
+          <Route element={<Gra game={game} user={user}/>}  path="/gra" />
           <Route element={<MojeGry user={user} gameChanger={changeCurrentGame}/>}  path="/moje-gry" />
           <Route element={<TworzenieGry user={user}/>}  path="/tworzenie-gry" />
           <Route element={<Rejestracja/>}  path="/rejestracja" />
