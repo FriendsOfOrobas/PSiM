@@ -8,6 +8,6 @@ def get_user(db: Session, username:str):
 
 
 def create_user(db: Session, user: schemas.UserCreate):
-    db_user = models.Users(username=user.username,password = user.password, salt = 0)
+    db_user = models.Users(username=user.username, password=user.password, salt="mock_salt")
     db.add(db_user)
     db.commit()

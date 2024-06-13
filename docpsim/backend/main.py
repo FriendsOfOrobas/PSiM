@@ -21,7 +21,7 @@ from config import ALGORITHM, SECRET_KEY, ACCESS_TOKEN_EXPIRE_MINUTES, ORIGINS
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login",scopes={"user": "Zwykly user", "arbiter": "Arbiter"})
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login",scopes={"user": "Zwykly user"})
 
 app = FastAPI()
 
@@ -47,7 +47,7 @@ def verify_password(plain_password, hashed_password):
 
 
 def get_password_hash(password):
-    # TODO add hashing with salt
+    # TODO add hashing with explicit salt
     return pwd_context.hash(password)
 
 
