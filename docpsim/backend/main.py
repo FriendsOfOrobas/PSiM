@@ -150,3 +150,128 @@ def login(form_data: OAuth2PasswordRequestForm = Depends(), db:Session = Depends
 @app.get("/users/me/", response_model=schemas.UserReturn)
 async def read_users_me(current_user: schemas.UserReturn = Depends(get_current_user)):
     return current_user
+
+
+@app.get("/users/{id}", response_model=schemas.UserReturn)
+async def read_user(id: int, db: Session = Depends(get_db)):
+    db_user = CRUD.get_user_by_id(db, id)
+    if db_user is None:
+        raise HTTPException(status_code=404, detail="User not found")
+    return db_user
+
+
+@app.delete("/users/{id}", status_code=200)
+async def delete_user(id: int, db: Session = Depends(get_db)):
+    db_user = CRUD.get_user_by_id(db, id)
+    if db_user is None:
+        raise HTTPException(status_code=404, detail="User not found")
+    db.delete(db_user)
+    try:
+        db.commit()
+    except:
+        db.rollback()
+        raise HTTPException(status_code=400, detail="Could not delete user")
+    return {"message": "user deleted successfully"}
+
+
+@app.get("/games/{id}", response_model=schemas.GameReturn)
+async def read_game(id: int, db: Session = Depends(get_db)):
+    db_game = CRUD.get_game_by_id(db, id)
+    if db_game is None:
+        raise HTTPException(status_code=404, detail="Game not found")
+    return db_game
+
+
+@app.post("/games/", status_code=201)
+async def create_game(game: schemas.GameCreate, db: Session = Depends(get_db)):
+    try:
+        CRUD.create_game(db, game)
+    except:
+        raise HTTPException(status_code=400, detail="Game with this name already exists")
+    return {"message": "game created successfully"}
+
+
+@app.get("/games/{game_id}/team/{team_id}", response_model=schemas.GameReturn)
+async def read_game_team(game_id: int, team_id: int, db: Session = Depends(get_db)):
+    db_game = CRUD.get_game_filered_by_team_id(db, game_id, team_id)
+    if db_game is None:
+        raise HTTPException(status_code=404, detail="Game not found")
+    return db_game
+
+
+@app.update("/games/", status_code=201)
+async def update_game(game: schemas.GameCreate, db: Session = Depends(get_db)):
+    try:
+        CRUD.update_game(db, game)
+    except:
+        raise HTTPException(status_code=400, detail="Game with this name already exists")
+    return {"message": "game updated successfully"}
+
+
+@app.get("/checkpoint/{checkpoint_id}/comments", response_model=schemas.Comments)
+async def read_comments(checkpoint_id: int, db: Session = Depends(get_db)):
+    db_comments = db.query(models.Comments).filter(models.Comments.checkpoint_id == checkpoint_id).all()
+    return db_comments
+
+
+@app.post("/checkpoint/{checkpoint_id}/comments", status_code=201)
+async def create_comment(checkpoint_id: int, comment: schemas.Comments, db: Session = Depends(get_db)):
+    db_comment = models.Comments(comment=comment.comment)
+    db.add(db_comment)
+    db.commit()
+    return {"message": "comment created successfully"}
+
+
+@app.update("/checkpoint/{checkpoint_id}/team/{team_id}/unlock", status_code=201)
+async def unlock_checkpoint(checkpoint_id: int, team_id: int, db: Session = Depends(get_db)):
+    db_unlocked = models.Unlocked(checkpoint_id=checkpoint_id, team_id=team_id)
+    db.add(db_unlocked)
+    db.commit()
+    return {"message": "checkpoint unlocked successfully"}
+
+
+@app.get("/teams/{game_id}", response_model=schemas.TeamReturn)
+async def read_teams(game_id: int, db: Session = Depends(get_db)):
+    db_teams = db.query(models.Teams).filter(models.Teams.game_id == game_id).all()
+    return db_teams
+
+
+@app.get("/teams/team/{team_id}", response_model=schemas.TeamReturn)
+async def read_team(team_id: int, db: Session = Depends(get_db)):
+    db_team = db.query(models.Teams).filter(models.Teams.id == team_id).first()
+    return db_team
+
+
+@app.post("/teams/{game_id}", status_code=201)
+async def create_team(game_id: int, name: str, members: list[int], db: Session = Depends(get_db)):
+    db_team = models.Teams(game_id=game_id, name=name, points=0, game_times=[])
+    CRUD.create_team(db, db_team, members)
+    return {"message": "team created successfully"}
+
+
+@app.get("/games/users/{user_id}/admin", response_model=schemas.GameReturn, scopes=["admin"])
+async def read_games_admin(user_id: int, db: Session = Depends(get_db)):
+    db_games = db.query(models.Games).filter(models.Games.game_admmin_id == user_id).all()
+    return db_games
+
+
+@app.get("/games/users/{user_id}/player", response_model=schemas.GameReturn, scopes=["user"])
+async def read_games_player(user_id: int, db: Session = Depends(get_db)):
+    db_teams = db.query(models.TeamMembers).filter(models.TeamMembers.user_id == user_id).all()
+    db_games = []
+    for team in db_teams:
+        db_game = db.query(models.Games).filter(models.Games.id == team.game_id).first()
+        db_games.append(db_game)
+    return db_games
+
+
+@app.get("/checkpoints/{checkpoint_id}/player", response_model=schemas.CheckpointReturn, scopes=["user"])
+async def read_checkpoint_player(checkpoint_id: int, db: Session = Depends(get_db)):
+    db_checkpoint = db.query(models.Checkpoints).filter(models.Checkpoints.id == checkpoint_id).first()
+    return db_checkpoint
+
+
+@app.get("/checkpoints/{checkpoint_id}/admin", response_model=schemas.CheckpointReturnAdmin, scopes=["admin"])
+async def read_checkpoint_admin(checkpoint_id: int, db: Session = Depends(get_db)):
+    db_checkpoint = db.query(models.Checkpoints).filter(models.Checkpoints.id == checkpoint_id).first()
+    return db_checkpoint
