@@ -102,3 +102,7 @@ class CheckpointCreate:
     qr_code_path: str | None
 
 
+class UnlockedCreate(BaseModel):
+    id: int
+    checkpoint_id: int
+    team_id: int

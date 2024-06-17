@@ -223,17 +223,20 @@ async def create_comment(checkpoint_id: int, comment: schemas.Comments, db: Sess
     return {"message": "comment created successfully"}
 
 
-@app.put("/checkpoint/{checkpoint_id}/team/{team_id}/unlock", status_code=201)
+@app.post("/checkpoint/{checkpoint_id}/team/{team_id}/unlock", response_model=schemas.UnlockedCreate, status_code=201)
 async def unlock_checkpoint(checkpoint_id: int, team_id: int, db: Session = Depends(get_db)):
-    db_unlocked = models.Unlocked(checkpoint_id=checkpoint_id, team_id=team_id)
-    try:
-        db.add(db_unlocked)
-    except:
-        db.rollback()
-        raise HTTPException(status_code=400, detail="Checkpoint already unlocked")
-    db.commit()
-    return {"message": "checkpoint unlocked successfully"}
-
+    checkpoint = db.query(models.Checkpoints.previous).filter(models.Checkpoints.id == checkpoint_id).first()
+    if checkpoint is None or db.query(models.Unlocked).filter(models.Unlocked.checkpoint_id == checkpoint).filter(models.Unlocked.team_id == team_id).first() is not None:
+        db_unlocked = models.Unlocked(checkpoint_id=checkpoint_id, team_id=team_id)
+        try:
+            db.add(db_unlocked)
+        except:
+            db.rollback()
+            raise HTTPException(status_code=400, detail="Checkpoint already unlocked")
+        db.commit()
+        return {"message": "checkpoint unlocked successfully"}
+    else:
+        raise HTTPException(status_code=400, detail="Previous checkpoint not unlocked")
 
 @app.get("/teams/{game_id}", response_model=schemas.TeamReturn)
 async def read_teams(game_id: int, db: Session = Depends(get_db)):
