@@ -88,14 +88,14 @@ class TeamReturn(BaseModel):
     members: list[int]
 
 
-class AchievementCreate:
+class AchievementCreate(BaseModel):
     description: str
     bonus: int
     treshold: int
     checkpoint_id: int
 
 
-class CheckpointCreate:
+class CheckpointCreate(BaseModel):
     name: str
     description: str
     previous: int | None
