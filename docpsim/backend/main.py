@@ -3,7 +3,7 @@ from __future__ import annotations
 from datetime import datetime, timedelta
 import random
 import time
-
+from typing import List
 
 from sqlalchemy.orm import Session
 from fastapi import Depends, FastAPI, HTTPException, status, Security
@@ -183,9 +183,9 @@ async def read_game(id: int, db: Session = Depends(get_db)):
 
 
 @app.post("/games/", status_code=201)
-async def create_game(game: schemas.GameCreate, db: Session = Depends(get_db)):
+async def create_game(game: schemas.GameCreate, checkpoints: list[schemas.CheckpointCreate], achievements: list[schemas.AchievementCreate],db: Session = Depends(get_db)):
     try:
-        CRUD.create_game(db, game)
+        CRUD.create_game(db, game, checkpoints, achievements)
     except:
         raise HTTPException(status_code=400, detail="Game with this name already exists")
     return {"message": "game created successfully"}
@@ -199,7 +199,7 @@ async def read_game_team(game_id: int, team_id: int, db: Session = Depends(get_d
     return db_game
 
 
-@app.update("/games/", status_code=201)
+@app.put("/games/", status_code=201)
 async def update_game(game: schemas.GameCreate, db: Session = Depends(get_db)):
     try:
         CRUD.update_game(db, game)
@@ -216,16 +216,21 @@ async def read_comments(checkpoint_id: int, db: Session = Depends(get_db)):
 
 @app.post("/checkpoint/{checkpoint_id}/comments", status_code=201)
 async def create_comment(checkpoint_id: int, comment: schemas.Comments, db: Session = Depends(get_db)):
-    db_comment = models.Comments(comment=comment.comment)
+    db_comment = models.Comments(comment=comment.comment, user_id=comment.user_id,
+                                 checkpoint_id=checkpoint_id, created_at=datetime.now())
     db.add(db_comment)
     db.commit()
     return {"message": "comment created successfully"}
 
 
-@app.update("/checkpoint/{checkpoint_id}/team/{team_id}/unlock", status_code=201)
+@app.put("/checkpoint/{checkpoint_id}/team/{team_id}/unlock", status_code=201)
 async def unlock_checkpoint(checkpoint_id: int, team_id: int, db: Session = Depends(get_db)):
     db_unlocked = models.Unlocked(checkpoint_id=checkpoint_id, team_id=team_id)
-    db.add(db_unlocked)
+    try:
+        db.add(db_unlocked)
+    except:
+        db.rollback()
+        raise HTTPException(status_code=400, detail="Checkpoint already unlocked")
     db.commit()
     return {"message": "checkpoint unlocked successfully"}
 
@@ -239,6 +244,7 @@ async def read_teams(game_id: int, db: Session = Depends(get_db)):
 @app.get("/teams/team/{team_id}", response_model=schemas.TeamReturn)
 async def read_team(team_id: int, db: Session = Depends(get_db)):
     db_team = db.query(models.Teams).filter(models.Teams.id == team_id).first()
+    db_team.members = db.query(models.TeamMembers).filter(models.TeamMembers.team_id == team_id).all()
     return db_team
 
 
@@ -249,13 +255,13 @@ async def create_team(game_id: int, name: str, members: list[int], db: Session =
     return {"message": "team created successfully"}
 
 
-@app.get("/games/users/{user_id}/admin", response_model=schemas.GameReturn, scopes=["admin"])
+@app.get("/games/users/{user_id}/admin", response_model=List[schemas.GameReturnStrip])
 async def read_games_admin(user_id: int, db: Session = Depends(get_db)):
     db_games = db.query(models.Games).filter(models.Games.game_admmin_id == user_id).all()
     return db_games
 
 
-@app.get("/games/users/{user_id}/player", response_model=schemas.GameReturn, scopes=["user"])
+@app.get("/games/users/{user_id}/player", response_model=List[schemas.GameReturnStrip])
 async def read_games_player(user_id: int, db: Session = Depends(get_db)):
     db_teams = db.query(models.TeamMembers).filter(models.TeamMembers.user_id == user_id).all()
     db_games = []
@@ -265,13 +271,19 @@ async def read_games_player(user_id: int, db: Session = Depends(get_db)):
     return db_games
 
 
-@app.get("/checkpoints/{checkpoint_id}/player", response_model=schemas.CheckpointReturn, scopes=["user"])
+@app.get("/checkpoints/{checkpoint_id}/player", response_model=schemas.CheckpointReturn)
 async def read_checkpoint_player(checkpoint_id: int, db: Session = Depends(get_db)):
     db_checkpoint = db.query(models.Checkpoints).filter(models.Checkpoints.id == checkpoint_id).first()
     return db_checkpoint
 
 
-@app.get("/checkpoints/{checkpoint_id}/admin", response_model=schemas.CheckpointReturnAdmin, scopes=["admin"])
+@app.get("/checkpoints/{checkpoint_id}/admin", response_model=schemas.CheckpointReturnAdmin)
 async def read_checkpoint_admin(checkpoint_id: int, db: Session = Depends(get_db)):
     db_checkpoint = db.query(models.Checkpoints).filter(models.Checkpoints.id == checkpoint_id).first()
     return db_checkpoint
+
+
+@app.get(" /teams/{game_id}/{user_id}", response_model=schemas.TeamReturnID)
+async def read_team_id(game_id: int, user_id: int, db: Session = Depends(get_db)):
+    db_team = db.query(models.Teams).filter(models.Teams.game_id == game_id).filter(models.Teams.members.any(models.TeamMembers.user_id == user_id)).first()
+    return db_team

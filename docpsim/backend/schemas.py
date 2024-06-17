@@ -10,8 +10,7 @@ class UserCreate(UserBase):
 
 
 class UserReturn(UserBase):
-    uuid: int
-
+    id: int
     class Config:
         orm_mode = True
 
@@ -60,6 +59,12 @@ class GameReturn(BaseModel):
     achievements: list[AchievementReturn]
 
 
+class GameReturnStrip(BaseModel):
+    id: int
+    name: str
+    description: str
+    max_team_size: int
+
 class GameCreate(BaseModel):
     name: str
     description: str
@@ -81,3 +86,21 @@ class TeamReturn(BaseModel):
     points: int
     game_times: list[datetime]
     members: list[int]
+
+
+class AchievementCreate:
+    description: str
+    bonus: int
+    treshold: int
+    checkpoint_id: int
+
+
+class CheckpointCreate:
+    name: str
+    description: str
+    previous: int | None
+    qr_code_path: str | None
+
+
+class TeamReturnID(BaseModel):
+    id: int
