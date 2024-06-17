@@ -102,5 +102,3 @@ class CheckpointCreate:
     qr_code_path: str | None
 
 
-class TeamReturnID(BaseModel):
-    id: int

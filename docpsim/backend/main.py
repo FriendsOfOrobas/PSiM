@@ -283,7 +283,8 @@ async def read_checkpoint_admin(checkpoint_id: int, db: Session = Depends(get_db
     return db_checkpoint
 
 
-@app.get(" /teams/{game_id}/{user_id}", response_model=schemas.TeamReturnID)
+@app.get(" /teams/{game_id}/{user_id}", response_model=schemas.TeamReturn)
 async def read_team_id(game_id: int, user_id: int, db: Session = Depends(get_db)):
-    db_team = db.query(models.Teams).filter(models.Teams.game_id == game_id).filter(models.Teams.members.any(models.TeamMembers.user_id == user_id)).first()
+    db_team = (db.query(models.Teams).filter(models.Teams.game_id == game_id)
+               .filter(models.Teams.members.any(models.TeamMembers.user_id == user_id)).all())
     return db_team
