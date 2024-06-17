@@ -12,8 +12,8 @@ def get_user_by_id(db: Session, user_id: int):
     return db_user
 
 
-def create_user(db: Session, user: schemas.UserCreate):
-    db_user = models.Users(username=user.username, password=user.password, salt="mock_salt")
+def create_user(db: Session, user: schemas.UserCreate, salt: str):
+    db_user = models.Users(username=user.username, password=user.password, salt=salt)
     db.add(db_user)
     db.commit()
 
