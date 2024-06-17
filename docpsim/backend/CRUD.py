@@ -1,3 +1,5 @@
+from typing import List
+
 from sqlalchemy.orm import Session
 import models, schemas
 
@@ -25,7 +27,7 @@ def get_game_by_id(db: Session, game_id: int):
     return db_game
 
 
-def create_game(db: Session, game: schemas.GameCreate, achievements: list[schemas.AchievementCreate], checkpoints: list[schemas.CheckpointCreate]):
+def create_game(db: Session, game: schemas.GameCreate, checkpoints: List[schemas.CheckpointCreate], achievements: List[schemas.AchievementCreate]):
     db_game = models.Games(name=game.name, description=game.description, max_team_size=game.max_team_size, game_admmin_id=game.game_admmin_id)
     db.add(db_game)
     for achievement in achievements:

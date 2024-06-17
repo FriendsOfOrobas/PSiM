@@ -185,7 +185,10 @@ async def read_game(id: int, db: Session = Depends(get_db), current_user: schema
 
 
 @app.post("/games/", status_code=201)
-async def create_game(game: schemas.GameCreate, checkpoints: list[schemas.CheckpointCreate], achievements: list[schemas.AchievementCreate],db: Session = Depends(get_db), current_user: schemas.UserReturn = Security(get_current_user, scopes=["user"])):
+async def create_game(game: schemas.GameCreate,
+                      checkpoints: List[schemas.CheckpointCreate],
+                      achievements: List[schemas.AchievementCreate],
+                      db: Session = Depends(get_db), current_user: schemas.UserReturn = Security(get_current_user, scopes=["user"])):
     try:
         CRUD.create_game(db, game, checkpoints, achievements)
     except:
