@@ -29,7 +29,7 @@ def get_game_by_id(db: Session, game_id: int):
 
 def create_game(db: Session, game: schemas.GameCreate, checkpoints: List[schemas.CheckpointCreate],
                 achievements: List[schemas.AchievementCreate]):
-    db_game = models.Games(name=game.name, description=game.description, max_team_size=game.max_team_size, game_admmin_id=game.game_admmin_id)
+    db_game = models.Games(name=game.name, description=game.description, max_team_size=game.max_team_size, game_admin_id=game.game_admin_id)
     db.add(db_game)
     for achievement in achievements:
         db_achievement = models.Achievements(name=achievement.name, description=achievement.description, bonus=achievement.bonus, treshold=achievement.treshold, checkpoint_id=achievement.checkpoint_id, game_id=db_game.id)
@@ -55,7 +55,7 @@ def update_game(db: Session, game: schemas.GameCreate):
     db_game = db.query(models.Games).filter(models.Games.name == game.name).first()
     db_game.description = game.description
     db_game.max_team_size = game.max_team_size
-    db_game.game_admmin_id = game.game_admmin_id
+    db_game.game_admin_id = game.game_admin_id
     db.commit()
     return db_game
 

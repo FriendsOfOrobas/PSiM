@@ -69,7 +69,7 @@ class GameCreate(BaseModel):
     name: str
     description: str
     max_team_size: int
-    game_admmin_id: int
+    game_admin_id: int
 
 
 class Comments(BaseModel):

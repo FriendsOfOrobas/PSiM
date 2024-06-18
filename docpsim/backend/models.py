@@ -19,7 +19,7 @@ class Games(Base):
     name = Column(String(64), nullable=False, unique=True)
     description = Column(Text, nullable=False)
     max_team_size = Column(Integer, nullable=False)
-    game_admmin_id = Column(ForeignKey("users.id"), nullable=False)
+    game_admin_id = Column(ForeignKey("users.id"), nullable=False)
 
     admin = relationship("Users", back_populates="games")
     teams = relationship("Teams", back_populates="game")

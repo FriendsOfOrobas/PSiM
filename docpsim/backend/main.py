@@ -264,7 +264,7 @@ async def create_team(game_id: int, name: str, members: list[int], db: Session =
 
 @app.get("/games/users/{user_id}/admin", response_model=List[schemas.GameReturnStrip])
 async def read_games_admin(user_id: int, db: Session = Depends(get_db), current_user: schemas.UserReturn = Security(get_current_user, scopes=["user"])):
-    db_games = db.query(models.Games).filter(models.Games.game_admmin_id == user_id).all()
+    db_games = db.query(models.Games).filter(models.Games.game_admin_id == user_id).all()
     return db_games
 
 
