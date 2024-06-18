@@ -11,10 +11,10 @@ const Game = ({game,gameChanger}) => {
         return navigate('/gra')
     }}>
       <span className="moje-gry-text06">
-        <span>{game.game["name"]}</span>
+        <span>{game["name"]}</span>
       </span>
       <span className="moje-gry-text09">
-        {game.game["description"]}
+        {game["description"]}
       </span>
     </div>
   )

@@ -1,7 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { FaHome } from "react-icons/fa";
+import { useSignOut } from 'react-auth-kit';
 import './navbar.css'
+
 
 const GreetingText = ({team, player, point}) => {
   if (team !== "empty") {
@@ -45,10 +47,15 @@ const ButtonContainer = ({location,handleLogout}) => {
 }
 
 const Navbar = ({team="empty", player="empty", point="empty", location, handleLogout}) => {
+  const signOut = useSignOut()
+  const logOut = () =>{
+    signOut()
+    handleLogout()
+  }
   return (
     <div className="zespol-navbar">
       <GreetingText team={team} player={player} point={point}/>
-      <ButtonContainer location={location} handleLogout={handleLogout}/>
+      <ButtonContainer location={location} handleLogout={logOut}/>
     </div>
   )
 }

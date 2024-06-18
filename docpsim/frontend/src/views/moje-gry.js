@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 import { Helmet } from 'react-helmet'
 import {Link} from 'react-router-dom'
+import {useAuthHeader} from 'react-auth-kit';
 
 import './moje-gry.css'
 
@@ -10,24 +11,35 @@ import Game from '../components/Game'
 const MojeGry = ({user,gameChanger}) => {
   const [admins,setAdmins] = useState([])
   const [users,setUsers] = useState([])
+  const authHeader = useAuthHeader()
 
   useEffect(() => {
-    const fetchGames = async() =>{
-      const res = await fetch("http://localhost:8000/games")
-      const data = await res.json()
-      const userGames = data.filter((game) => {
-        return game.game["game_admin_id"] !== user["id"]
+    const fetchGamesUser = async() =>{
+      const res = await fetch("/games/users/"+user["id"]+"/player",{
+        headers:{
+          "Authorization": authHeader()
+        }
       })
-      setAdmins(data.filter((game) => {
-        return game.game["game_admin_id"] === user["id"]
-      }))
-      setUsers(userGames)
-      if (userGames != []) {
-        gameChanger(userGames[0],true)
+      const data = await res.json()
+      setUsers(data)
+      console.log(data)
+      if (data != []) {
+        gameChanger(data[0],true)
       } 
     }
-
-    fetchGames()
+    const fetchGamesAdmin = async() =>{
+      const res = await fetch("/games/users/"+user["id"]+"/admin",{
+        headers:{
+          "Authorization": authHeader()
+        }
+      })
+      const data = await res.json()
+      console.log(data)
+      setAdmins(data)
+    }
+    console.log(authHeader())
+    fetchGamesUser()
+    fetchGamesAdmin()
   },[])
 
   return (

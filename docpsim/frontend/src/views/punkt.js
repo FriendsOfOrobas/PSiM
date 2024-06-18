@@ -12,7 +12,7 @@ const Punkt = () => {
   const {blocked, point, user} = state
 
   const commentPOST = async(newComment) =>{
-    const res = await fetch("http://localhost:8000/comments",{
+    const res = await fetch("/comments",{
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -33,7 +33,7 @@ const Punkt = () => {
 
   useEffect(() => {
     const fetchComments = async() =>{
-      const res = await fetch("http://localhost:8000/comments")
+      const res = await fetch("/comments")
       const data = await res.json()
       setComments(data)
     }

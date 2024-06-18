@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import {useNavigate} from 'react-router-dom'
 import { v4 as uuidv4 } from 'uuid';
+import {useAuthHeader} from 'react-auth-kit';
 
 import { Helmet } from 'react-helmet'
 import TeamList from '../components/TeamList'
@@ -18,6 +19,7 @@ const TworzenieGry = ({user}) => {
   const [pointsFinished,setPointsFinished] = useState([])
   const [achievementsFinished,setAchievementsFinished] = useState([])
   const navigate = useNavigate()
+  const authHeader = useAuthHeader()
 
   const updateTeams = (newTeams) =>{
     setTeamsFinished(newTeams)
@@ -30,31 +32,32 @@ const TworzenieGry = ({user}) => {
   }
   
   const gamePOSTRequest = async(newGame) =>{
-    const res = await fetch("http://localhost:8000/games",{
+    const res = await fetch("/games",{
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "Authorization": authHeader()
       },
       body: JSON.stringify(newGame)
     });
-    return;
+    const res_data = await res.json()
+    return res_data["id"];
   }
 
-  const teamPOSTRequest = async(newTeam) =>{
-    const res = await fetch("http://localhost:8000/teams",{
+  const teamPOSTRequest = async(newTeam,game_id) =>{
+    const res = await fetch("/teams/"+game_id,{
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "Authorization": authHeader()
       },
       body: JSON.stringify(newTeam)
     });
     return;
   }
 
-  const submitGame = () =>{
-    const id = uuidv4()
+  const submitGame = async () =>{
     const gameData = {
-      id,
       "game":{
       name,
       description,
@@ -64,17 +67,17 @@ const TworzenieGry = ({user}) => {
       "checkpoints":pointsFinished,
       "achievements":achievementsFinished
     }
+    const game_id = await gamePOSTRequest(gameData)
     teamsFinished.map((team) => {
       const teamData = {
-        "game_id":id,
         "name":team["name"],
         "players":team["players"]
       }
-      teamPOSTRequest(teamData)
+      teamPOSTRequest(teamData, game_id)
     })
 
-    gamePOSTRequest(gameData)
-    return navigate('/moje-gry')
+    
+    // return navigate('/moje-gry')
   }
 
   return (

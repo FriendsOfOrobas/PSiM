@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import "./AchievementsList.css"
 
 const AchievementsListUnfinished = ({itemID, outsideHandler}) => {
-    const [title,setTitle] = useState('')
     const [description,setDescription] = useState('')
     const [type,setType] = useState("1")
     const [treshold,setTreshold] = useState(0)
@@ -13,16 +12,14 @@ const AchievementsListUnfinished = ({itemID, outsideHandler}) => {
         let response
         if (type==="1") {
             response = {
-                "title": title,
                 "description": description,
                 "treshold": Number(treshold),
                 "bonus": Number(bonus)
             }
         } else {
             response = {
-                "title": title,
                 "description": description,
-                "point": Number(point),
+                "checkpoint_id": Number(point),
                 "bonus": Number(bonus)
             }
         }
@@ -32,13 +29,6 @@ const AchievementsListUnfinished = ({itemID, outsideHandler}) => {
 
   return (
     <div className="tworzenie-gry-teamitemunfinished1 button">
-        <input
-          type="text"
-          rows="Nazwa osiągnięcia"
-          placeholder="Nazwa punktu"
-          className="tworzenie-gry-textinput2 input"
-          onChange={(e) => {setTitle(e.target.value)}}
-        />
         <textarea
           placeholder="Opis osiągnięcia"
           className="textarea"

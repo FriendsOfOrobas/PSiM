@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 
 import { Helmet } from 'react-helmet'
 import {useNavigate} from 'react-router-dom'
+import {useSignIn} from 'react-auth-kit'
 
 import './logowanie.css'
 
@@ -9,19 +10,44 @@ const Logowanie = ({loginFunc}) => {
   const [username,setUsername] = useState('')
   const [password,setPassword] = useState('')
   const navigate = useNavigate()
+  const signIn = useSignIn()
 
   const loginSubmit = async() =>{
     const data = {
       username,
       password
     }
-    const result = await loginFunc(data)
+    const body_str = 'username='+data["username"]+'&password='+data["password"]+'&scope=&client_id=&client_secret='
+    const res = await fetch("/login/",{
+      method: "POST",
+      headers: {
+        'accept': 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      body: body_str
+    });
+    if(res.status === 200){
+      const res_data = await res.json()
+      signIn({
+        token: res_data["access_token"],
+        expiresIn: 1440,
+        tokenType: "Bearer",
+        authState: {username: data["username"]}
+      })
 
-    if (result) {
+      const user_res = await fetch("/users/me/", {
+        headers:{
+          "Authorization": "Bearer "+res_data["access_token"]
+        }
+      })
+      const user_res_data = await user_res.json()
+      loginFunc(user_res_data)
+  
       return navigate('/moje-gry')
     }else{
       return navigate('/')
     }
+
   }
 
   return (

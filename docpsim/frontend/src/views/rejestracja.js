@@ -12,7 +12,7 @@ const Rejestracja = (props) => {
   const navigate = useNavigate()
 
   const userPOSTRequest = async(newUser) =>{
-    const res = await fetch("http://localhost:8000/users",{
+    const res = await fetch("/register",{
       method: "POST",
       headers: {
         "Content-Type": "application/json"

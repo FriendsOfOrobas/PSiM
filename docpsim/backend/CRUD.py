@@ -31,15 +31,24 @@ def create_game(db: Session, game: schemas.GameCreate, checkpoints: List[schemas
                 achievements: List[schemas.AchievementCreate]):
     db_game = models.Games(name=game.name, description=game.description, max_team_size=game.max_team_size, game_admin_id=game.game_admin_id)
     db.add(db_game)
-    for achievement in achievements:
-        db_achievement = models.Achievements(name=achievement.name, description=achievement.description, bonus=achievement.bonus, treshold=achievement.treshold, checkpoint_id=achievement.checkpoint_id, game_id=db_game.id)
-        db.add(db_achievement)
-    last_checkpoint_id = None
+    db.flush()
+    checkpoints_id = []
     for checkpoint in checkpoints:
-        db_checkpoint = models.Checkpoints(name=checkpoint.name, description=checkpoint.description, qr_code_path=checkpoint.qr_code_path, game_id=db_game.id, previous=last_checkpoint_id)
+        previous_id = checkpoints_id[checkpoint.previous] if checkpoint.previous != -1 else None
+        db_checkpoint = models.Checkpoints(name=checkpoint.name, description=checkpoint.description, qr_code_path="mock", game_id=db_game.id, previous=previous_id)
         db.add(db_checkpoint)
-        last_checkpoint_id = db.get(models.Checkpoints.id).filter(models.Checkpoints.game_id == db_game.id).filter(models.Checkpoints.name == checkpoint.name).first()
+        db.flush()
+        checkpoints_id.append(db_checkpoint.id)
+
+    for achievement in achievements:
+        c_id = None
+        if achievement.checkpoint_id:
+            c_id = checkpoints_id[achievement.checkpoint_id]
+        db_achievement = models.Achievements(description=achievement.description,unlocked=False, bonus=achievement.bonus, treshold=achievement.treshold, checkpoint_id=c_id, game_id=db_game.id)
+        db.add(db_achievement)
+    
     db.commit()
+    return db_game.id
 
 
 def get_game_filered_by_team_id(db: Session, game_id: int, team_id: int):
@@ -60,16 +69,17 @@ def update_game(db: Session, game: schemas.GameCreate):
     return db_game
 
 
-def create_team(db: Session, team: models.Teams, members: list[int]):
+def create_team(db: Session, team: models.Teams, members: list[str]):
     try:
         db.add(team)
-        db.commit()
+        db.flush()
     except:
         db.rollback()
         raise Exception("Team with this name already exists")
     try:
         for member in members:
-            db_team_member = models.TeamMembers(user_id=member, team_id=team.id)
+            db_user = db.query(models.Users).filter(models.Users.username == member).first()
+            db_team_member = models.TeamMembers(team_id=team.id, user_id=db_user.id)
             db.add(db_team_member)
         db.commit()
     except:

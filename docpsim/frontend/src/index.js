@@ -8,6 +8,10 @@ import {
   Route
 } from 'react-router-dom'
 import {StrictMode} from 'react';
+import {AuthProvider} from 'react-auth-kit'
+
+
+// import createStore from 'react-auth-kit/createStore';
 
 import './style.css'
 import Punkt from './views/punkt'
@@ -28,6 +32,15 @@ const App = () => {
   const [user,setUser] = useState(() => JSON.parse(sessionStorage.getItem('user') ?? '{}'))
   const [game,setGame] = useState(() => JSON.parse(sessionStorage.getItem('game') ?? '{}'))
   const [team,setTeam] = useState(() => JSON.parse(sessionStorage.getItem('team') ?? '{}'))
+  
+
+  // const store = createStore({
+  //   authName:'_auth',
+  //   authType:'cookie',
+  //   cookieDomain: window.location.hostname,
+  //   cookieSecure: false,
+  // });
+  
 
   useEffect(()=>{
     sessionStorage.setItem('user',JSON.stringify(user))
@@ -41,19 +54,8 @@ const App = () => {
     sessionStorage.setItem('team',JSON.stringify(team))
   },[team])
 
-  const logIn = async(data) =>{
-    const res = await fetch("http://localhost:8000/users?username="+data["username"])
-    const res_data = await res.json()
-    if (res_data == false) {
-      return false
-    }
-    const res_user = res_data[0]
-    if (res_user["password"] === data["password"]) {
-      setUser(res_user)
-      return true
-    }else{
-      return false
-    }
+  const logIn = (data) =>{
+    setUser(data)
   }
 
   const logOut = () =>{
@@ -89,7 +91,14 @@ const App = () => {
     )
   )
 
-  return <RouterProvider router={router}/>;
+  return(    
+  <AuthProvider authType={'cookie'}
+  authName={'_auth'}
+  cookieDomain={window.location.hostname}
+  cookieSecure={window.location.protocol === "https:"}> 
+    <RouterProvider router={router}/>
+  </AuthProvider>
+  );
   
 }
 

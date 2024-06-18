@@ -183,16 +183,16 @@ async def read_game(id: int, db: Session = Depends(get_db), current_user: schema
     return db_game
 
 
-@app.post("/games/", status_code=201)
+@app.post("/games", status_code=201)
 async def create_game(game: schemas.GameCreate,
                       checkpoints: List[schemas.CheckpointCreate],
                       achievements: List[schemas.AchievementCreate],
                       db: Session = Depends(get_db), current_user: schemas.UserReturn = Security(get_current_user, scopes=["user"])):
-    try:
-        CRUD.create_game(db, game, checkpoints, achievements)
-    except:
-        raise HTTPException(status_code=400, detail="Game with this name already exists")
-    return {"message": "game created successfully"}
+    # try:
+    id = CRUD.create_game(db, game, checkpoints, achievements)
+    # except:
+    #     raise HTTPException(status_code=400, detail="Game with this name already exists")
+    return {"id": id}
 
 
 @app.get("/games/{game_id}/team/{team_id}", response_model=schemas.GameReturn)
@@ -203,13 +203,13 @@ async def read_game_team(game_id: int, team_id: int, db: Session = Depends(get_d
     return db_game
 
 
-@app.put("/games/", status_code=201)
+@app.put("/games", status_code=201)
 async def update_game(game: schemas.GameCreate, db: Session = Depends(get_db), current_user: schemas.UserReturn = Security(get_current_user, scopes=["user"])):
-    try:
-        CRUD.update_game(db, game)
-    except:
-        raise HTTPException(status_code=400, detail="Game with this name already exists")
-    return {"message": "game updated successfully"}
+    # try:
+    CRUD.update_game(db, game)
+    # except:
+    #     raise HTTPException(status_code=400, detail="Game with this name already exists")
+    # return {"message": "game updated successfully"}
 
 
 @app.get("/checkpoint/{checkpoint_id}/comments", response_model=schemas.Comments)
@@ -256,9 +256,9 @@ async def read_team(team_id: int, db: Session = Depends(get_db), current_user: s
 
 
 @app.post("/teams/{game_id}", status_code=201)
-async def create_team(game_id: int, name: str, members: list[int], db: Session = Depends(get_db), current_user: schemas.UserReturn = Security(get_current_user, scopes=["user"])):
-    db_team = models.Teams(game_id=game_id, name=name, points=0, game_times=[])
-    CRUD.create_team(db, db_team, members)
+async def create_team(game_id: int, team: schemas.TeamCreate, db: Session = Depends(get_db), current_user: schemas.UserReturn = Security(get_current_user, scopes=["user"])):
+    db_team = models.Teams(game_id=game_id, name=team.name, points=0, game_times=[])
+    CRUD.create_team(db, db_team, team.players)
     return {"message": "team created successfully"}
 
 
@@ -270,7 +270,11 @@ async def read_games_admin(user_id: int, db: Session = Depends(get_db), current_
 
 @app.get("/games/users/{user_id}/player", response_model=List[schemas.GameReturnStrip])
 async def read_games_player(user_id: int, db: Session = Depends(get_db), current_user: schemas.UserReturn = Security(get_current_user, scopes=["user"])):
-    db_teams = db.query(models.TeamMembers).filter(models.TeamMembers.user_id == user_id).all()
+    db_team_members = db.query(models.TeamMembers).filter(models.TeamMembers.user_id == user_id).all()
+    db_teams = []
+    for member in db_team_members:
+        db_team = db.query(models.Teams).filter(models.Teams.id == member.team_id).first()
+        db_teams.append(db_team)
     db_games = []
     for team in db_teams:
         db_game = db.query(models.Games).filter(models.Games.id == team.game_id).first()
@@ -290,7 +294,7 @@ async def read_checkpoint_admin(checkpoint_id: int, db: Session = Depends(get_db
     return db_checkpoint
 
 
-@app.get(" /teams/{game_id}/{user_id}", response_model=schemas.TeamReturn)
+@app.get("/teams/{game_id}/{user_id}", response_model=schemas.TeamReturn)
 async def read_team_id(game_id: int, user_id: int, db: Session = Depends(get_db), current_user: schemas.UserReturn = Security(get_current_user, scopes=["user"])):
     db_team = (db.query(models.Teams).filter(models.Teams.game_id == game_id)
                .filter(models.Teams.members.any(models.TeamMembers.user_id == user_id)).all())

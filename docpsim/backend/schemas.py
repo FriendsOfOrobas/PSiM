@@ -91,18 +91,22 @@ class TeamReturn(BaseModel):
 class AchievementCreate(BaseModel):
     description: str
     bonus: int
-    treshold: int
-    checkpoint_id: int
+    treshold: int | None = None
+    checkpoint_id: int | None = None
 
 
 class CheckpointCreate(BaseModel):
     name: str
     description: str
-    previous: int | None
-    qr_code_path: str | None
+    previous: int | None = None
+    qr_code_path: str | None = None
 
 
 class UnlockedCreate(BaseModel):
     id: int
     checkpoint_id: int
     team_id: int
+
+class TeamCreate(BaseModel):
+    name:str
+    players: list[str]

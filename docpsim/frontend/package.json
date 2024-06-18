@@ -2,11 +2,13 @@
   "name": "gra-miejska",
   "version": "1.0.0",
   "private": true,
+  "proxy": "http://127.0.0.1:8000",
   "dependencies": {
     "craco": "^0.0.3",
     "json-server": "^1.0.0-beta.1",
     "prop-types": "15.7.2",
     "react": "^18.1.0",
+    "react-auth-kit": "^2.12.7",
     "react-dom": "^18.1.0",
     "react-helmet": "^6.1.0",
     "react-icons": "^5.2.1",
