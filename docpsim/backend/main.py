@@ -49,7 +49,7 @@ def verify_password(plain_password, hashed_password):
 def get_password_hash(password):
     # TODO add hashing with explicit salt
     salt = str(random.randint(1000000000, 9999999999))
-    password = password + salt
+    pwd_context.using(salt=salt)
     return pwd_context.hash(password), salt
 
 
@@ -75,7 +75,8 @@ def authenticate_user(db: Session, username: str, password: str):
     user = CRUD.get_user(db, username)
     if not user:
         return False
-    if not verify_password(pwd_context.hash(password+user.salt), user.password):
+    pwd_context.using(salt=user.salt)
+    if not verify_password(pwd_context.hash(password), user.password):
         return False
     return user
 
