@@ -5,7 +5,7 @@ BEGIN;
 
 CREATE TABLE IF NOT EXISTS public.users
 (
-    id integer NOT NULL,
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY,
     username character varying NOT NULL,
     password character varying NOT NULL,
     salt character varying NOT NULL,
@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS public.users
 
 CREATE TABLE IF NOT EXISTS public.games
 (
-    id integer NOT NULL,
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY,
     name character varying NOT NULL,
     description text NOT NULL,
     game_admin_id integer NOT NULL,
@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS public.games
 
 CREATE TABLE IF NOT EXISTS public.checkpoints
 (
-    id integer NOT NULL,
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY,
     name character varying NOT NULL,
     description text NOT NULL,
     qr_code_path character varying NOT NULL,
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS public.checkpoints
 
 CREATE TABLE IF NOT EXISTS public.comments
 (
-    id integer NOT NULL,
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY,
     comment text NOT NULL,
     author_id integer NOT NULL,
     checkpoint_id integer NOT NULL,
@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS public.comments
 
 CREATE TABLE IF NOT EXISTS public.team
 (
-    id integer NOT NULL,
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY,
     game_id integer NOT NULL,
     name character varying NOT NULL,
     points integer NOT NULL,
@@ -55,14 +55,14 @@ CREATE TABLE IF NOT EXISTS public.team
 
 CREATE TABLE IF NOT EXISTS public.team_members
 (
-    id integer,
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY,
     user_id integer,
     team_id integer
 );
 
 CREATE TABLE IF NOT EXISTS public.unlocked
 (
-    id integer NOT NULL,
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY,
     checkpoint_id integer,
     team_id integer,
     PRIMARY KEY (id)
@@ -70,7 +70,7 @@ CREATE TABLE IF NOT EXISTS public.unlocked
 
 CREATE TABLE IF NOT EXISTS public.achivements
 (
-    id integer NOT NULL,
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY,
     description text NOT NULL,
     game_id integer NOT NULL,
     unlocked boolean NOT NULL,
