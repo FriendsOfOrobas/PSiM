@@ -27,25 +27,24 @@ class TokenData(BaseModel):
 
 class AchievementReturn(BaseModel):
     id: int
-    name: str
     description: str
     bonus: int
-    treshold: int
-    checkpoint_id: int
+    treshold: int | None = None
+    checkpoint_id: int | None = None
 
 
 class CheckpointReturn(BaseModel):
     id: int
     name: str
     description: str
-    previous: int | None
+    previous: int | None = None
 
 
 class CheckpointReturnAdmin(BaseModel):
     id: int
     name: str
     description: str
-    previous: int | None
+    previous: int | None = None
     qr_code_path: str
 
 
@@ -55,7 +54,8 @@ class GameReturn(BaseModel):
     description: str
     max_team_size: int
     admin: UserReturn
-    checkpoints: list[CheckpointReturn]
+    checkpoints_locked: list[CheckpointReturn]
+    checkpoints_unlocked: list[CheckpointReturn]
     achievements: list[AchievementReturn]
 
 
@@ -71,12 +71,14 @@ class GameCreate(BaseModel):
     max_team_size: int
     game_admin_id: int
 
+class CommentsCreate(BaseModel):
+    comment: str
+    user_id: int
 
 class Comments(BaseModel):
     comment: str
-    user_id: int
-    checkpoint_id: int
-    created_at: datetime
+    author: str
+    time: datetime
 
 
 class TeamReturn(BaseModel):

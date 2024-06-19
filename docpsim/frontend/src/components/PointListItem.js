@@ -10,7 +10,7 @@ const PointListItem = ({point, blocked,admin=false, user}) => {
       if (blocked) {
         navigate('/punkt',{ state: { blocked: true, point, user} })
       }else{
-        navigate('/punkt',{ state: { blocked: true, point, user} })
+        navigate('/punkt',{ state: { blocked: false, point, user} })
       }
     }
 

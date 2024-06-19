@@ -110,7 +110,7 @@
        },
 ]
 ```
-- `/games/{game_id}/team/{team_id}`
+- `/games/{game_id}/teams/user/{user_id}`
 
 ```JSON
 {

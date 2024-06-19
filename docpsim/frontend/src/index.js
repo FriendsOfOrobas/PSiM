@@ -65,7 +65,7 @@ const App = () => {
 
   const changeCurrentGame = (newGame, first = false) =>{
     if(first){
-      if (game == {}) {
+      if (Object.keys(game).length === 0) {
         setGame(newGame)
       } 
     }else{

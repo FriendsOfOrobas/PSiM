@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import {useAuthHeader} from 'react-auth-kit';
 
 import { Helmet } from 'react-helmet'
 import PointListItem from '../components/PointListItem'
@@ -7,11 +8,35 @@ import AchievementListItem from '../components/AchievementListItem'
 import './gra.css'
 
 const Gra = ({game = {}, admin=false, user = {}}) => {
-  console.log(typeof game)
-  const points = Object.keys(game).length === 0 ? [] :game["checkpoints"]
-  const achievements = Object.keys(game).length === 0 ? [] :game["achievements"]
-  const is_admin = Object.keys(game).length === 0 || Object.keys(user).length === 0 ? false : game.game["game_admin_id"] == user["id"]
-  const name = Object.keys(game).length === 0 ? 'Brak gry!' : game.game["name"]
+  const [checkpointsLocked,setCheckpointsLocked] = useState([])
+  const [checkpointsUnlocked,setCheckpointsUnlocked] = useState([])
+  const [achievements,setAchievements] = useState([])
+  const [name,setName] = useState('')
+  const [is_admin,setIs_admin] = useState(false)
+  const authHeader = useAuthHeader()
+
+  useEffect(() => {
+    const getGame = async() =>{
+      const res = await fetch("/games/"+game["id"]+"/teams/user/"+user["id"],{
+        headers: {
+          "Authorization": authHeader()
+        }})
+      const res_data = await res.json()
+
+      setCheckpointsLocked(res_data["checkpoints_locked"])
+      setCheckpointsUnlocked(res_data["checkpoints_unlocked"])
+      setAchievements(res_data["achievements"])
+      setName(res_data["name"])
+      setIs_admin(user["id"] === res_data.admin["id"])
+      console.log(res_data)
+    }
+    getGame()
+  },[])
+  
+  // const points = Object.keys(game).length === 0 ? [] :game["checkpoints"]
+  // const achievements = Object.keys(game).length === 0 ? [] :game["achievements"]
+  // const is_admin = Object.keys(game).length === 0 || Object.keys(user).length === 0 ? false : game["game_admin_id"] == user["id"]
+  // const name = Object.keys(game).length === 0 ? 'Brak gry!' : game["name"]
 
   return (
     <>
@@ -33,8 +58,8 @@ const Gra = ({game = {}, admin=false, user = {}}) => {
               <br></br>
             </h1>
             <ul className="list gracz-ul">
-              {points.map((point, index) => (
-                <PointListItem key={index} point={point} user={user} admin={is_admin}/>
+              {checkpointsUnlocked.map((point, index) => (
+                <PointListItem key={index} blocked={false} point={point} user={user} admin={is_admin}/>
               ))}
             </ul>
           </div>
@@ -44,8 +69,8 @@ const Gra = ({game = {}, admin=false, user = {}}) => {
               <br></br>
             </h1>
             <ul className="list gracz-ul1">
-            {points.map((point, index) => (
-                <PointListItem key={index} point={point} user={user} admin={is_admin}/>
+            {checkpointsLocked.map((point, index) => (
+                <PointListItem key={index} blocked={true} point={point} user={user} admin={is_admin}/>
               ))}
             </ul>
           </div>

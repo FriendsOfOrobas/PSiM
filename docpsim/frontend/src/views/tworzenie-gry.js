@@ -77,7 +77,7 @@ const TworzenieGry = ({user}) => {
     })
 
     
-    // return navigate('/moje-gry')
+    return navigate('/moje-gry')
   }
 
   return (

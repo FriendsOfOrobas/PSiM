@@ -51,12 +51,26 @@ def create_game(db: Session, game: schemas.GameCreate, checkpoints: List[schemas
     return db_game.id
 
 
-def get_game_filered_by_team_id(db: Session, game_id: int, team_id: int):
-    db_game = db.query(models.Games) .filter(models.Games.id == game_id)\
-            .filter(models.Games.teams.any(models.Teams.id == team_id))\
-            .first()
-    db_game.checkpoints = db.query(models.Checkpoints).filter(models.Checkpoints.game_id == game_id).all()
+def get_game_filered_by_team_id(db: Session, game_id: int, user_id: int):
+    team_id = -1
+    db_teams = db.query(models.Teams).filter(models.Teams.game_id == game_id).all()
+    for team in db_teams:
+        db_members = db.query(models.TeamMembers).filter(models.TeamMembers.user_id == user_id, models.TeamMembers.team_id == team.id).first()
+        if db_members:
+            team_id = team.id
+            break
+    db_game = db.query(models.Games).filter(models.Games.id == game_id).first()
     db_game.achievements = db.query(models.Achievements).filter(models.Achievements.game_id == game_id).all()
+    db_game.checkpoints_locked = db.query(models.Checkpoints).filter(models.Checkpoints.game_id == game_id).all()
+    db_game.checkpoints_unlocked = []
+
+    for checkpoint in db_game.checkpoints_locked:
+        db_unlocked = db.query(models.Unlocked).filter(models.Unlocked.checkpoint_id == checkpoint.id, models.Unlocked.team_id == team_id).first()
+        if db_unlocked:
+            db_game.checkpoints_unlocked.append(checkpoint)
+    
+    for checkpoint in db_game.checkpoints_unlocked:
+        db_game.checkpoints_locked.remove(checkpoint)
     return db_game
 
 

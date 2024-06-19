@@ -22,7 +22,6 @@ const MojeGry = ({user,gameChanger}) => {
       })
       const data = await res.json()
       setUsers(data)
-      console.log(data)
       if (data != []) {
         gameChanger(data[0],true)
       } 
@@ -34,10 +33,8 @@ const MojeGry = ({user,gameChanger}) => {
         }
       })
       const data = await res.json()
-      console.log(data)
       setAdmins(data)
     }
-    console.log(authHeader())
     fetchGamesUser()
     fetchGamesAdmin()
   },[])

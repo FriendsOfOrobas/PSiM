@@ -195,9 +195,9 @@ async def create_game(game: schemas.GameCreate,
     return {"id": id}
 
 
-@app.get("/games/{game_id}/team/{team_id}", response_model=schemas.GameReturn)
-async def read_game_team(game_id: int, team_id: int, db: Session = Depends(get_db), current_user: schemas.UserReturn = Security(get_current_user, scopes=["user"])):
-    db_game = CRUD.get_game_filered_by_team_id(db, game_id, team_id)
+@app.get("/games/{game_id}/teams/user/{user_id}", response_model=schemas.GameReturn)
+async def read_game_user(game_id: int, user_id: int, db: Session = Depends(get_db), current_user: schemas.UserReturn = Security(get_current_user, scopes=["user"])):
+    db_game = CRUD.get_game_filered_by_team_id(db, game_id, user_id)
     if db_game is None:
         raise HTTPException(status_code=404, detail="Game not found")
     return db_game
@@ -212,16 +212,19 @@ async def update_game(game: schemas.GameCreate, db: Session = Depends(get_db), c
     # return {"message": "game updated successfully"}
 
 
-@app.get("/checkpoint/{checkpoint_id}/comments", response_model=schemas.Comments)
+@app.get("/checkpoint/{checkpoint_id}/comments", response_model=list[schemas.Comments])
 async def read_comments(checkpoint_id: int, db: Session = Depends(get_db), current_user: schemas.UserReturn = Security(get_current_user, scopes=["user"])):
     db_comments = db.query(models.Comments).filter(models.Comments.checkpoint_id == checkpoint_id).all()
+    for comment in db_comments:
+        comment.time = comment.date_time
+        comment.author = db.query(models.Users).filter(models.Users.id == comment.author_id).first().username
     return db_comments
 
 
 @app.post("/checkpoint/{checkpoint_id}/comments", status_code=201)
-async def create_comment(checkpoint_id: int, comment: schemas.Comments, db: Session = Depends(get_db), current_user: schemas.UserReturn = Security(get_current_user, scopes=["user"])):
-    db_comment = models.Comments(comment=comment.comment, user_id=comment.user_id,
-                                 checkpoint_id=checkpoint_id, created_at=datetime.now())
+async def create_comment(checkpoint_id: int, comment: schemas.CommentsCreate, db: Session = Depends(get_db), current_user: schemas.UserReturn = Security(get_current_user, scopes=["user"])):
+    db_comment = models.Comments(comment=comment.comment, author_id=comment.user_id,
+                                 checkpoint_id=checkpoint_id, date_time=datetime.now())
     db.add(db_comment)
     db.commit()
     return {"message": "comment created successfully"}
