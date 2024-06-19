@@ -25,6 +25,7 @@ import Zespol from './views/zespol'
 import Home from './views/home'
 import NotFound from './views/not-found'
 import MainLayout from './layouts/MainLayout'
+import Unlock from './views/unlock';
 
 
 
@@ -85,6 +86,7 @@ const App = () => {
           <Route element={<TworzenieGry user={user}/>}  path="/tworzenie-gry" />
           <Route element={<Rejestracja/>}  path="/rejestracja" />
           <Route element={<Zespol/>}  path="/zespol" />
+          <Route element={<Unlock user={user}/>} path='/unlock/:gameId/:checkpointId' />
           <Route element={<Home />}  index />
           <Route element={<NotFound/>} path="*" />
     </Route>

@@ -2,6 +2,8 @@ from typing import List
 
 from sqlalchemy.orm import Session
 import models, schemas
+import segno
+from config import PROXY, QR_PATH
 
 
 def get_user(db: Session, username: str):
@@ -38,7 +40,15 @@ def create_game(db: Session, game: schemas.GameCreate, checkpoints: List[schemas
         db_checkpoint = models.Checkpoints(name=checkpoint.name, description=checkpoint.description, qr_code_path="mock", game_id=db_game.id, previous=previous_id)
         db.add(db_checkpoint)
         db.flush()
-        checkpoints_id.append(db_checkpoint.id)
+        new_id = db_checkpoint.id
+        qr_string = f"{PROXY}/unlock/{db_game.id}/{db_checkpoint.id}"
+        qr_code = segno.make_qr(qr_string)
+        qr_path = f"{QR_PATH}qr_{new_id}.png"
+        qr_code.save(qr_path,scale=10)
+        db_checkpoint = db.query(models.Checkpoints).filter(models.Checkpoints.id == new_id)
+        db_checkpoint.update({"qr_code_path":f"qr_{new_id}.png"})
+        db.flush()
+        checkpoints_id.append(new_id)
 
     for achievement in achievements:
         c_id = None

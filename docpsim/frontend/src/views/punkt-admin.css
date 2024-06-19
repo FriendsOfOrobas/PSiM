@@ -52,7 +52,7 @@
 }
 .punkt-admin-container2 {
   flex: 0 0 auto;
-  width: 200px;
+  width: 30vh;
   min-height: 78vh;
   display: flex;
   align-items: flex-start;
@@ -63,7 +63,7 @@
 }
 .punkt-admin-container3 {
   flex: 0 0 auto;
-  width: 200px;
+  width: 30vh;
   height: auto;
   min-height: 78vh;
   display: flex;
@@ -72,18 +72,27 @@
 }
 .punkt-admin-container4 {
   flex: 0 0 auto;
-  width: 200px;
+  width: 30vh;
+  height: 39vh;
+  border-color: var(--dl-color-gray-black);
+  border-width: 1px;
   display: flex;
   align-items: flex-start;
   flex-direction: column;
+}
+.punkt-text17 {
+  align-self: center;
+  text-align: center;
 }
 .punkt-admin-container5 {
   flex: 0 0 auto;
-  width: 200px;
+  width: 30vh;
+  height: 39vh;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
+  justify-items: center;
   flex-direction: column;
-}
+ }
 @media(max-width: 1920px) {
   .punkt-admin-navbar {
     position: relative;
@@ -99,8 +108,8 @@
     margin-top: var(--dl-space-space-twounits);
   }
   .punkt-admin-container2 {
-    width: auto;
-    height: 661px;
+    width: 30vh;
+    min-height: 78vh;
     border-color: var(--dl-color-primary-300);
     border-width: 1px;
   }
@@ -128,12 +137,15 @@
     margin-top: var(--dl-space-space-halfunit);
   }
   .punkt-admin-container4 {
-    width: auto;
-    height: auto;
+    width: 30vh;
+    height: 39vh;
     border-color: var(--dl-color-gray-black);
     border-width: 1px;
+
   }
   .punkt-admin-text13 {
+    margin-top: 24px;
+    margin-bottom: 24px;
     align-self: center;
     text-align: justify;
   }
@@ -143,7 +155,7 @@
     margin-right: 0px;
   }
   .punkt-admin-container5 {
-    height: 350px;
+    height: 39vh;
     position: relative;
     border-color: var(--dl-color-gray-black);
     border-style: dashed;
@@ -151,16 +163,17 @@
     margin-bottom: 0px;
   }
   .punkt-admin-text17 {
-    top: 0px;
+    /* top: 0px;
     left: 77px;
-    position: absolute;
+    position: absolute; */
     align-self: center;
     text-align: center;
-    padding-top: 148px;
+    justify-self: center;
+    /* padding-top: 148px; */
   }
 }
 @media(max-width: 479px) {
   .punkt-admin-text {
     margin-left: var(--dl-space-space-unit);
   }
-}
+} 

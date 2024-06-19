@@ -230,16 +230,21 @@ async def create_comment(checkpoint_id: int, comment: schemas.CommentsCreate, db
     return {"message": "comment created successfully"}
 
 
-@app.post("/checkpoint/{checkpoint_id}/team/{team_id}/unlock", response_model=schemas.UnlockedCreate, status_code=201)
+@app.put("/checkpoint/{checkpoint_id}/team/{team_id}/unlock", status_code=201)
 async def unlock_checkpoint(checkpoint_id: int, team_id: int, db: Session = Depends(get_db), current_user: schemas.UserReturn = Security(get_current_user, scopes=["user"])):
-    checkpoint = db.query(models.Checkpoints.previous).filter(models.Checkpoints.id == checkpoint_id).first()
-    if checkpoint is None or db.query(models.Unlocked).filter(models.Unlocked.checkpoint_id == checkpoint).filter(models.Unlocked.team_id == team_id).first() is not None:
+    db_duplicate = db.query(models.Unlocked).filter(models.Unlocked.checkpoint_id == checkpoint_id, models.Unlocked.team_id == team_id).first()
+    if db_duplicate:
+        raise HTTPException(status_code=400, detail="Checkpoint already unlocked")
+    db_checkpoint = db.query(models.Checkpoints).filter(models.Checkpoints.id == checkpoint_id).first()
+    db_previous = db.query(models.Checkpoints).filter(models.Checkpoints.id == db_checkpoint.previous).first()
+
+    if not db_previous or db.query(models.Unlocked).filter(models.Unlocked.checkpoint_id == db_previous.id, models.Unlocked.team_id == team_id).first():
         db_unlocked = models.Unlocked(checkpoint_id=checkpoint_id, team_id=team_id)
         try:
             db.add(db_unlocked)
         except:
             db.rollback()
-            raise HTTPException(status_code=400, detail="Checkpoint already unlocked")
+            raise HTTPException(status_code=400, detail="Database error")
         db.commit()
         return {"message": "checkpoint unlocked successfully"}
     else:
@@ -250,6 +255,19 @@ async def read_teams(game_id: int, db: Session = Depends(get_db), current_user: 
     db_teams = db.query(models.Teams).filter(models.Teams.game_id == game_id).all()
     return db_teams
 
+@app.get("/teams/{game_id}/{user_id}")
+async def read_team_id(game_id: int, user_id: int, db: Session = Depends(get_db), current_user: schemas.UserReturn = Security(get_current_user, scopes=["user"])):
+    team_id = -1
+    db_teams = db.query(models.Teams).filter(models.Teams.game_id == game_id).all()
+    for team in db_teams:
+        db_members = db.query(models.TeamMembers).filter(models.TeamMembers.user_id == user_id, models.TeamMembers.team_id == team.id).first()
+        if db_members:
+            team_id = team.id
+            break
+    if team_id == -1:
+        raise HTTPException(status_code=404,detail="Nie znaleziono zespołu")
+    db_team = db.query(models.Teams).filter(models.Teams.id == team_id).first()
+    return db_team
 
 @app.get("/teams/team/{team_id}", response_model=schemas.TeamReturn)
 async def read_team(team_id: int, db: Session = Depends(get_db), current_user: schemas.UserReturn = Security(get_current_user, scopes=["user"])):
@@ -297,8 +315,4 @@ async def read_checkpoint_admin(checkpoint_id: int, db: Session = Depends(get_db
     return db_checkpoint
 
 
-@app.get("/teams/{game_id}/{user_id}", response_model=schemas.TeamReturn)
-async def read_team_id(game_id: int, user_id: int, db: Session = Depends(get_db), current_user: schemas.UserReturn = Security(get_current_user, scopes=["user"])):
-    db_team = (db.query(models.Teams).filter(models.Teams.game_id == game_id)
-               .filter(models.Teams.members.any(models.TeamMembers.user_id == user_id)).all())
-    return db_team
+

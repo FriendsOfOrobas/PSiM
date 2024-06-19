@@ -3,3 +3,5 @@ ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 1440
 LOCAL_URL = "postgresql://postgres:1234@localhost:5432/psim"
 ORIGINS = ["*"]
+PROXY = "http://localhost:3000"
+QR_PATH = "C:\\Users\\kacpe\\PycharmProjects\\PSiM\\docpsim\\frontend\\public\\assets\\images\\"
