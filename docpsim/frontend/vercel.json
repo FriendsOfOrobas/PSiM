@@ -1,5 +1,5 @@
 {
   "rewrites": [
-    { "source": "/:path", "destination": "https://p-si-m-back.vercel.app/:path" }
+    { "source": "/(.*)", "destination": "/" }
   ]
 }
