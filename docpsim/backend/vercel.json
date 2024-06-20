@@ -7,8 +7,12 @@
   ],
   "routes": [
     {
-      "src": "/(.*)",
+      "src": "https://p-si-m.vercel.app/(.*)",
       "dest": "main.py"
+    },
+    {
+      "src": "/:path*",
+      "dest": "https://p-si-m.vercel.app/:path*"
     }
   ]
 }
