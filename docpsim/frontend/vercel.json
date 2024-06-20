@@ -1,5 +1,5 @@
 {
   "rewrites": [
-    { "source": "/:match*", "destination": "/:match*" }
+    { "source": "/:match*", "destination": "https://p-si-m-back.vercel.app/:match*" }
   ]
 }
