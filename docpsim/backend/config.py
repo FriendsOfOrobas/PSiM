@@ -3,5 +3,5 @@ ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 1440
 LOCAL_URL = "postgresql://default:PmRouHX3U0CN@ep-blue-cherry-a25t25mv-pooler.eu-central-1.aws.neon.tech/verceldb?pgbouncer=true&connect_timeout=15&sslmode=require"
 ORIGINS = ["*"]
-PROXY = "https://p-si-m.vercel.app/"
+PROXY = "https://p-si-m.vercel.app"
 QR_PATH = "../frontend/public/assets/images/"
