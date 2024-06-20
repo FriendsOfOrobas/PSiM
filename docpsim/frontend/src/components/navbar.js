@@ -7,18 +7,19 @@ import './navbar.css'
 
 const GreetingText = ({team, player, point}) => {
   if (team !== "empty") {
-    return (<h1 className="zespol-text">{team}</h1>);
+    return (<h1 className="zespol-text">Witaj {team}!</h1>);
   } else if(player !== "empty") {
     return <h1 className="zespol-text">Witaj {player}!</h1>;
   }else if (point !== "empty") {
-    return <h1 className="zespol-text">{point}</h1>;
+    return <h1 className="zespol-text">Witaj {point}!</h1>;
   }else{
     return <h1 className="zespol-text"></h1>;
   }
 }
 
 const ButtonContainer = ({location,handleLogout}) => {
-  if (location === "/" || location === "/logowanie"|| location === "/rejestracja") {
+  
+  if (location === "/" || location === "/logowanie"|| location === "/rejestracja"|| location.slice(0,7) === "/unlock") {
     return (
       <Link to="/" type="button" className="zespol-button" style={{fontSize: "40px"}}>
             <FaHome />

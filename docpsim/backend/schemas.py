@@ -80,6 +80,12 @@ class Comments(BaseModel):
     author: str
     time: datetime
 
+class TeamReturnShort(BaseModel):
+    id: int
+    game_id: int
+    name: str
+    points: int
+    game_times: list[datetime]
 
 class TeamReturn(BaseModel):
     id: int
@@ -87,7 +93,7 @@ class TeamReturn(BaseModel):
     name: str
     points: int
     game_times: list[datetime]
-    members: list[int]
+    members: list[str]
 
 
 class AchievementCreate(BaseModel):

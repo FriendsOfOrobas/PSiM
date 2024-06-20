@@ -52,7 +52,7 @@ def create_game(db: Session, game: schemas.GameCreate, checkpoints: List[schemas
 
     for achievement in achievements:
         c_id = None
-        if achievement.checkpoint_id:
+        if achievement.checkpoint_id or achievement.checkpoint_id == 0:
             c_id = checkpoints_id[achievement.checkpoint_id]
         db_achievement = models.Achievements(description=achievement.description,unlocked=False, bonus=achievement.bonus, treshold=achievement.treshold, checkpoint_id=c_id, game_id=db_game.id)
         db.add(db_achievement)

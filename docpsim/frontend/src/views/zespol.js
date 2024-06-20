@@ -1,18 +1,68 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import {useAuthHeader} from 'react-auth-kit';
 
 import { Helmet } from 'react-helmet'
 
 import './zespol.css'
 
 
-const Zespol = (props) => {
+const Zespol = ({game}) => {
+  const [team,setTeam] = useState({})
+  const [teams,setTeams] = useState([])
+  const [members,setMembers] = useState([])
+  const [found, setFound] = useState(false)
+  const authHeader = useAuthHeader()
+
+  useEffect(()=>{
+    const fetchData = async() =>{
+      const user_res = await fetch("/users/me/", {
+        headers:{
+          "Authorization": authHeader()
+        }
+      })
+      const user_res_data = await user_res.json()
+
+      const team_res = await fetch("/teams/"+game["id"]+"/"+user_res_data["id"], {
+        headers:{
+          "Authorization": authHeader()
+        }
+      })
+      const team_res_data = await team_res.json()
+
+      const team_det_res = await fetch("/teams/team/"+team_res_data["id"], {
+        headers:{
+          "Authorization": authHeader()
+        }
+      })
+      const team_det_res_data = await team_det_res.json()
+      if (team_det_res.status == 200) {
+        setFound(true)
+        setTeam(team_det_res_data)
+        setMembers(team_det_res_data["members"])  
+      }
+
+      const teams_det_res = await fetch("/teams/"+team_det_res_data["game_id"], {
+        headers:{
+          "Authorization": authHeader()
+        }
+      })
+      const teams_det_res_data = await teams_det_res.json()
+      if (teams_det_res.status === 200) {
+        const sorted_teams = teams_det_res_data.sort((a,b) => a["points"] - b["points"]).reverse()
+        setTeams(sorted_teams)
+      }
+
+    }
+    fetchData()
+  },[])
+
   return (
     <>
       <Helmet>
         <title>Zespol - Gra miejska</title>
         <meta property="og:title" content="Zespol - Gra miejska" />
       </Helmet>
-      
+      {found?
       <div className="zespol-container1">
         <div className="zespol-container2">
           <div className="zespol-container3">
@@ -21,7 +71,7 @@ const Zespol = (props) => {
               <br></br>
             </span>
             <span className="zespol-text07">
-              <span className="zespol-text08">&#123;punkty&#125;</span>
+              <span className="zespol-text08"> {team["points"]}</span>
               <br></br>
             </span>
           </div>
@@ -32,22 +82,11 @@ const Zespol = (props) => {
               <br></br>
             </h1>
             <ul className="list zespol-ul">
-              <li className="list-item">
-                <span>&#123;czlonek1&#125;</span>
-              </li>
-              <li className="list-item">
-                <span>&#123;czlonek1&#125;</span>
-              </li>
-              <li className="list-item">
-                <span>&#123;czlonek1&#125;</span>
-              </li>
-              <li className="list-item"></li>
-              <li className="list-item">
-                <span>
-                  <span>...</span>
-                  <br></br>
-                </span>
-              </li>
+              {members.map((member,index)=>(
+                <li key={index} className="list-item">
+                  <span>{member}</span>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
@@ -57,134 +96,20 @@ const Zespol = (props) => {
             <br></br>
           </h1>
           <ol className="list zespol-ul1">
-            <li className="list-item">
-              <span>
-                <span>TEAM1 : Punkty</span>
-                <br></br>
-              </span>
-            </li>
-            <li className="list-item">
-              <span>
-                <span>TEAM1 : Punkty</span>
-                <br></br>
-              </span>
-            </li>
-            <li className="list-item">
-              <span>
-                <span>TEAM1 : Punkty</span>
-                <br></br>
-              </span>
-            </li>
-            <li className="list-item">
-              <span>
-                <span>TEAM1 : Punkty</span>
-                <br></br>
-              </span>
-            </li>
-            <li className="list-item">
-              <span>
-                <span>TEAM1 : Punkty</span>
-                <br></br>
-              </span>
-            </li>
-            <li className="list-item">
-              <span>
-                <span>TEAM1 : Punkty</span>
-                <br></br>
-              </span>
-            </li>
-            <li className="list-item">
-              <span>
-                <span>TEAM1 : Punkty</span>
-                <br></br>
-              </span>
-            </li>
-            <li className="list-item">
-              <span>
-                <span>TEAM1 : Punkty</span>
-                <br></br>
-              </span>
-            </li>
-            <li className="list-item">
-              <span>
-                <span>TEAM1 : Punkty</span>
-                <br></br>
-              </span>
-            </li>
-            <li className="list-item">
-              <span>
-                <span>TEAM1 : Punkty</span>
-                <br></br>
-              </span>
-            </li>
-            <li className="list-item">
-              <span>
-                <span>TEAM1 : Punkty</span>
-                <br></br>
-              </span>
-            </li>
-            <li className="list-item">
-              <span>
-                <span>TEAM1 : Punkty</span>
-                <br></br>
-              </span>
-            </li>
-            <li className="list-item">
-              <span>
-                <span>TEAM1 : Punkty</span>
-                <br></br>
-              </span>
-            </li>
+            {teams.map((team,index) =>(
+              <li key={index} className="list-item">
+                <span>
+                  <span>{team["name"]} : {team["points"]}</span>
+                  <br></br>
+                </span>
+              </li>
+            ))}
+            
           </ol>
         </div>
-        <div className="zespol-container6">
-          <h1>
-            <span>Osiagniecia</span>
-            <br></br>
-          </h1>
-          <ul className="list">
-            <li className="list-item">
-              <span>Osiagniecie</span>
-            </li>
-            <li className="list-item">
-              <span>Osiagniecie</span>
-            </li>
-            <li className="list-item">
-              <span>Osiagniecie</span>
-            </li>
-            <li className="list-item">
-              <span>Osiagniecie</span>
-            </li>
-            <li className="list-item">
-              <span>Osiagniecie</span>
-            </li>
-            <li className="list-item">
-              <span>Osiagniecie</span>
-            </li>
-            <li className="list-item">
-              <span>Osiagniecie</span>
-            </li>
-            <li className="list-item">
-              <span>Osiagniecie</span>
-            </li>
-            <li className="list-item">
-              <span>Osiagniecie</span>
-            </li>
-            <li className="list-item">
-              <span>Osiagniecie</span>
-            </li>
-            <li className="list-item">
-              <span>Osiagniecie</span>
-            </li>
-            <li className="list-item">
-              <span>Osiagniecie</span>
-            </li>
-            <li className="list-item">
-              <span>Osiagniecie</span>
-            </li>
-          </ul>
-        </div>
-      </div>
+
+      </div>:
+      <h1>Nie znaleziono zespołu</h1>}
     </>
   )
 }
