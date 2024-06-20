@@ -245,12 +245,48 @@ async def unlock_checkpoint(checkpoint_id: int, team_id: int, db: Session = Depe
         except:
             db.rollback()
             raise HTTPException(status_code=400, detail="Database error")
+        db.flush()
+        points = 1
+        db_locked = []
+        db_team = db.query(models.Teams).filter(models.Teams.id == team_id).first()
+        db_achievements = db.query(models.Achievements).filter(models.Achievements.game_id == db_team.game_id, models.Achievements.unlocked == False).all()
+        for achievement in db_achievements:
+            if achievement.treshold:
+                if points + db_team.points >= achievement.treshold:
+                    points += achievement.bonus
+                    db_locked.append(achievement.id)
+            else:
+                if checkpoint_id == achievement.checkpoint_id:
+                    points += achievement.bonus
+                    db_locked.append(achievement.id)
+        for achievement in db_achievements:
+            if achievement.treshold:
+                if points + db_team.points >= achievement.treshold:
+                    points += achievement.bonus
+                    db_locked.append(achievement.id)
+        points += db_team.points
+        db_team = db.query(models.Teams).filter(models.Teams.id == team_id)
+        db_team.update({"points":points})
+        for id in db_locked:
+            db_achievements = db.query(models.Achievements).filter(models.Achievements.id == id)
+            db_achievements.update({"unlocked": True})
         db.commit()
         return {"message": "checkpoint unlocked successfully"}
     else:
         raise HTTPException(status_code=400, detail="Previous checkpoint not unlocked")
 
-@app.get("/teams/{game_id}", response_model=schemas.TeamReturn)
+@app.get("/teams/team/{team_id}", response_model=schemas.TeamReturn)
+async def read_team(team_id: int, db: Session = Depends(get_db), current_user: schemas.UserReturn = Security(get_current_user, scopes=["user"])):
+    db_team = db.query(models.Teams).filter(models.Teams.id == team_id).first()
+    db_team_members = db.query(models.TeamMembers).filter(models.TeamMembers.team_id == team_id).all()
+    members_list = []
+    for team_member in db_team_members:
+        db_user = db.query(models.Users).filter(models.Users.id == team_member.user_id).first()
+        members_list.append(db_user.username)
+    db_team.members = members_list
+    return db_team
+
+@app.get("/teams/{game_id}", response_model=List[schemas.TeamReturnShort])
 async def read_teams(game_id: int, db: Session = Depends(get_db), current_user: schemas.UserReturn = Security(get_current_user, scopes=["user"])):
     db_teams = db.query(models.Teams).filter(models.Teams.game_id == game_id).all()
     return db_teams
@@ -269,11 +305,7 @@ async def read_team_id(game_id: int, user_id: int, db: Session = Depends(get_db)
     db_team = db.query(models.Teams).filter(models.Teams.id == team_id).first()
     return db_team
 
-@app.get("/teams/team/{team_id}", response_model=schemas.TeamReturn)
-async def read_team(team_id: int, db: Session = Depends(get_db), current_user: schemas.UserReturn = Security(get_current_user, scopes=["user"])):
-    db_team = db.query(models.Teams).filter(models.Teams.id == team_id).first()
-    db_team.members = db.query(models.TeamMembers).filter(models.TeamMembers.team_id == team_id).all()
-    return db_team
+
 
 
 @app.post("/teams/{game_id}", status_code=201)

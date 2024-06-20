@@ -52,7 +52,7 @@
   align-items: flex-start;
   flex-direction: column;
 }
-@media(max-width: 1200px) {
+@media(max-width: 1920px) {
   .zespol-navbar {
     position: relative;
   }

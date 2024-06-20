@@ -8,7 +8,7 @@ import {
   Route
 } from 'react-router-dom'
 import {StrictMode} from 'react';
-import {AuthProvider} from 'react-auth-kit'
+import {AuthProvider, RequireAuth} from 'react-auth-kit'
 
 
 // import createStore from 'react-auth-kit/createStore';
@@ -42,7 +42,6 @@ const App = () => {
   //   cookieSecure: false,
   // });
   
-
   useEffect(()=>{
     sessionStorage.setItem('user',JSON.stringify(user))
   },[user])
@@ -78,15 +77,15 @@ const App = () => {
   const router = createBrowserRouter(
     createRoutesFromElements(
     <Route element={<MainLayout logoutFunc={logOut} user={user}/>} path="/" >
-          <Route element={<Punkt/>} path="/punkt" />
-          <Route element={<PunktAdmin/>} path="/punkt-admin" />
+          <Route element={<RequireAuth loginPath='/logowanie'><Punkt/></RequireAuth>} path="/punkt" />
+          <Route element={<RequireAuth loginPath='/logowanie'><PunktAdmin/></RequireAuth>} path="/punkt-admin" />
           <Route element={<Logowanie loginFunc={logIn}/>}  path="/logowanie" />
-          <Route element={<Gra game={game} user={user}/>}  path="/gra" />
-          <Route element={<MojeGry user={user} gameChanger={changeCurrentGame}/>}  path="/moje-gry" />
-          <Route element={<TworzenieGry user={user}/>}  path="/tworzenie-gry" />
+          <Route element={<RequireAuth loginPath='/logowanie'><Gra game={game} user={user}/></RequireAuth>}  path="/gra" />
+          <Route element={<RequireAuth loginPath='/logowanie'><MojeGry user={user} gameChanger={changeCurrentGame}/></RequireAuth>}  path="/moje-gry" />
+          <Route element={<RequireAuth loginPath='/logowanie'><TworzenieGry user={user}/></RequireAuth>}  path="/tworzenie-gry" />
           <Route element={<Rejestracja/>}  path="/rejestracja" />
-          <Route element={<Zespol/>}  path="/zespol" />
-          <Route element={<Unlock user={user}/>} path='/unlock/:gameId/:checkpointId' />
+          <Route element={<RequireAuth loginPath='/logowanie'><Zespol game={game}/></RequireAuth>}  path="/zespol" />
+          <Route element={<RequireAuth loginPath='/logowanie'><Unlock user={user}/></RequireAuth>} path='/unlock/:gameId/:checkpointId' />
           <Route element={<Home />}  index />
           <Route element={<NotFound/>} path="*" />
     </Route>

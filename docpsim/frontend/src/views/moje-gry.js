@@ -14,20 +14,27 @@ const MojeGry = ({user,gameChanger}) => {
   const authHeader = useAuthHeader()
 
   useEffect(() => {
-    const fetchGamesUser = async() =>{
-      const res = await fetch("/games/users/"+user["id"]+"/player",{
+    const fetchGames = async() =>{
+      
+      const user_res = await fetch("/users/me/", {
         headers:{
           "Authorization": authHeader()
         }
       })
-      const data = await res.json()
-      setUsers(data)
-      if (data != []) {
-        gameChanger(data[0],true)
+      const user_res_data = await user_res.json()
+
+      const res_user = await fetch("/games/users/"+user_res_data["id"]+"/player",{
+        headers:{
+          "Authorization": authHeader()
+        }
+      })
+      const data_user = await res_user.json()
+      setUsers(data_user)
+      if (data_user != []) {
+        gameChanger(data_user[0],true)
       } 
-    }
-    const fetchGamesAdmin = async() =>{
-      const res = await fetch("/games/users/"+user["id"]+"/admin",{
+    
+      const res = await fetch("/games/users/"+user_res_data["id"]+"/admin",{
         headers:{
           "Authorization": authHeader()
         }
@@ -35,8 +42,7 @@ const MojeGry = ({user,gameChanger}) => {
       const data = await res.json()
       setAdmins(data)
     }
-    fetchGamesUser()
-    fetchGamesAdmin()
+    fetchGames()
   },[])
 
   return (
