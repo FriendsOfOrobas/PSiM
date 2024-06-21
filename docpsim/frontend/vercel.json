@@ -1,12 +1,8 @@
 {
-	"routes": [
+	"routes" : [
 		{
-			"src": "/:path*",
-			"dest": "https://p-si-m-back.vercel.app/:path*"
-		},
-		{
-			"src": "https://p-si-m-back.vercel.app/:path*",
-			"dest": "/:path*"
+			"src" : "/(.*)",
+			"dest" : "/$1"
 		}
 	]
 }
