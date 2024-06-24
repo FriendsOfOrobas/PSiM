@@ -17,7 +17,7 @@ const Gra = ({game = {}, admin=false, user = {}}) => {
 
   useEffect(() => {
     const getGame = async() =>{
-      const res = await fetch("api/games/"+game["id"]+"/teams/user/"+user["id"],{
+      const res = await fetch("https://p-si-m-back.vercel.app/games/"+game["id"]+"/teams/user/"+user["id"],{
         headers: {
           "Authorization": authHeader()
         }})

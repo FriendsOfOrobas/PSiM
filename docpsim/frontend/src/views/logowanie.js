@@ -18,7 +18,7 @@ const Logowanie = ({loginFunc}) => {
       password
     }
     const body_str = 'username='+data["username"]+'&password='+data["password"]+'&scope=&client_id=&client_secret='
-    const res = await fetch("/login/",{
+    const res = await fetch("https://p-si-m-back.vercel.app/login/",{
       method: "POST",
       headers: {
         'accept': 'application/json',
@@ -35,7 +35,7 @@ const Logowanie = ({loginFunc}) => {
         authState: {username: data["username"]}
       })
 
-      const user_res = await fetch("api/users/me/", {
+      const user_res = await fetch("https://p-si-m-back.vercel.app/users/me/", {
         headers:{
           "Authorization": "Bearer "+res_data["access_token"]
         }

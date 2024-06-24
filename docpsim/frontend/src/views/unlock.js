@@ -10,20 +10,20 @@ const Unlock = ({}) => {
 
     useEffect(() =>{
         const unlock = async() =>{
-            const user_res = await fetch("api/users/me/", {
+            const user_res = await fetch("https://p-si-m-back.vercel.app/users/me/", {
               headers:{
                 "Authorization": authHeader()
               }
             })
             const user_res_data = await user_res.json()
-            const team_res = await fetch("api/teams/"+gameId+"/"+user_res_data["id"],{
+            const team_res = await fetch("https://p-si-m-back.vercel.app/teams/"+gameId+"/"+user_res_data["id"],{
                 headers: {
                   "Authorization": authHeader()
                 }
             })
             const team_res_data = await team_res.json()
 
-            const unlock_res = await fetch("api/checkpoint/"+checkpointId+"/team/"+team_res_data["id"]+"/unlock",{
+            const unlock_res = await fetch("https://p-si-m-back.vercel.app/checkpoint/"+checkpointId+"/team/"+team_res_data["id"]+"/unlock",{
                 method: "PUT",
                 headers: {
                   "Content-Type": "application/json",

@@ -12,7 +12,7 @@ const Rejestracja = (props) => {
   const navigate = useNavigate()
 
   const userPOSTRequest = async(newUser) =>{
-    const res = await fetch("api/register",{
+    const res = await fetch("https://p-si-m-back.vercel.app/register",{
       method: "POST",
       headers: {
         "Content-Type": "application/json"

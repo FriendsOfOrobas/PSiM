@@ -17,7 +17,7 @@ const PunktAdmin = (props) => {
   
 
   const commentPOST = async(newComment) =>{
-    const res = await fetch("api/checkpoint/"+point["id"]+"/comments",{
+    const res = await fetch("https://p-si-m-back.vercel.app/checkpoint/"+point["id"]+"/comments",{
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -40,7 +40,7 @@ const PunktAdmin = (props) => {
 
   useEffect(() => {
     const fetchComments = async() =>{
-      const res = await fetch("api/checkpoint/"+point["id"]+"/comments",{
+      const res = await fetch("https://p-si-m-back.vercel.app/checkpoint/"+point["id"]+"/comments",{
         headers: {
           "Authorization": authHeader()
         }
@@ -53,7 +53,7 @@ const PunktAdmin = (props) => {
   },[update])
   useEffect(() =>{
     const fetchPoint = async() =>{
-      const res = await fetch("api/checkpoints/"+point["id"]+"/admin",{
+      const res = await fetch("https://p-si-m-back.vercel.app/checkpoints/"+point["id"]+"/admin",{
         headers: {
           "Authorization": authHeader()
         }
