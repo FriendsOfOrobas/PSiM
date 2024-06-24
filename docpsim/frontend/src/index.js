@@ -74,20 +74,18 @@ const App = () => {
 
   }
 
-const backURL = "https://p-si-m-back.vercel.app"
-
   const router = createBrowserRouter(
     createRoutesFromElements(
     <Route element={<MainLayout logoutFunc={logOut} user={user}/>} path="/" >
-          <Route element={<RequireAuth loginPath='/logowanie'><Punkt/></RequireAuth>} path=backURL+"/punkt" />
-          <Route element={<RequireAuth loginPath='/logowanie'><PunktAdmin/></RequireAuth>} path=backURL+"/punkt-admin" />
-          <Route element={<Logowanie loginFunc={logIn}/>}  path=backURL+"/logowanie" />
-          <Route element={<RequireAuth loginPath='/logowanie'><Gra game={game} user={user}/></RequireAuth>}  path=backURL+"/gra" />
-          <Route element={<RequireAuth loginPath='/logowanie'><MojeGry user={user} gameChanger={changeCurrentGame}/></RequireAuth>}  path=backURL+"/moje-gry" />
-          <Route element={<RequireAuth loginPath='/logowanie'><TworzenieGry user={user}/></RequireAuth>}  path=backURL+"/tworzenie-gry" />
+          <Route element={<RequireAuth loginPath='/logowanie'><Punkt/></RequireAuth>} path="/punkt" />
+          <Route element={<RequireAuth loginPath='/logowanie'><PunktAdmin/></RequireAuth>} path="/punkt-admin" />
+          <Route element={<Logowanie loginFunc={logIn}/>}  path="/logowanie" />
+          <Route element={<RequireAuth loginPath='/logowanie'><Gra game={game} user={user}/></RequireAuth>}  path="/gra" />
+          <Route element={<RequireAuth loginPath='/logowanie'><MojeGry user={user} gameChanger={changeCurrentGame}/></RequireAuth>}  path="/moje-gry" />
+          <Route element={<RequireAuth loginPath='/logowanie'><TworzenieGry user={user}/></RequireAuth>}  path="/tworzenie-gry" />
           <Route element={<Rejestracja/>}  path="/rejestracja" />
-          <Route element={<RequireAuth loginPath='/logowanie'><Zespol game={game}/></RequireAuth>}  path=backURL+"/zespol" />
-          <Route element={<RequireAuth loginPath='/logowanie'><Unlock user={user}/></RequireAuth>} path=backURL+'/unlock/:gameId/:checkpointId' />
+          <Route element={<RequireAuth loginPath='/logowanie'><Zespol game={game}/></RequireAuth>}  path="/zespol" />
+          <Route element={<RequireAuth loginPath='/logowanie'><Unlock user={user}/></RequireAuth>} path='/unlock/:gameId/:checkpointId' />
           <Route element={<Home />}  index />
           <Route element={<NotFound/>} path="*" />
     </Route>
