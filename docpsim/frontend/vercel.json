@@ -2,7 +2,7 @@
 	"rewrites" : [
 		{
 			"source" : "api/:match*",
-			"destination" : "https://p-si-m-back.vercel.app/:path*"
+			"destination" : "https://p-si-m-back.vercel.app/:match*"
 		}
 	]
 }
