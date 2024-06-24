@@ -12,7 +12,7 @@ const Rejestracja = (props) => {
   const navigate = useNavigate()
 
   const userPOSTRequest = async(newUser) =>{
-    const res = await fetch("/register",{
+    const res = await fetch("api/register",{
       method: "POST",
       headers: {
         "Content-Type": "application/json"

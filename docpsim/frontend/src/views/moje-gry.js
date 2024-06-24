@@ -16,14 +16,14 @@ const MojeGry = ({user,gameChanger}) => {
   useEffect(() => {
     const fetchGames = async() =>{
       
-      const user_res = await fetch("/users/me/", {
+      const user_res = await fetch("api/users/me/", {
         headers:{
           "Authorization": authHeader()
         }
       })
       const user_res_data = await user_res.json()
 
-      const res_user = await fetch("/games/users/"+user_res_data["id"]+"/player",{
+      const res_user = await fetch("api/games/users/"+user_res_data["id"]+"/player",{
         headers:{
           "Authorization": authHeader()
         }
@@ -34,7 +34,7 @@ const MojeGry = ({user,gameChanger}) => {
         gameChanger(data_user[0],true)
       } 
     
-      const res = await fetch("/games/users/"+user_res_data["id"]+"/admin",{
+      const res = await fetch("api/games/users/"+user_res_data["id"]+"/admin",{
         headers:{
           "Authorization": authHeader()
         }

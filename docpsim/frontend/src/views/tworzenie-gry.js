@@ -32,7 +32,7 @@ const TworzenieGry = ({user}) => {
   }
   
   const gamePOSTRequest = async(newGame) =>{
-    const res = await fetch("/games",{
+    const res = await fetch("api/games",{
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -45,7 +45,7 @@ const TworzenieGry = ({user}) => {
   }
 
   const teamPOSTRequest = async(newTeam,game_id) =>{
-    const res = await fetch("/teams/"+game_id,{
+    const res = await fetch("api/teams/"+game_id,{
       method: "POST",
       headers: {
         "Content-Type": "application/json",

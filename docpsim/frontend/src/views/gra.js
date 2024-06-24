@@ -17,7 +17,7 @@ const Gra = ({game = {}, admin=false, user = {}}) => {
 
   useEffect(() => {
     const getGame = async() =>{
-      const res = await fetch("/games/"+game["id"]+"/teams/user/"+user["id"],{
+      const res = await fetch("api/games/"+game["id"]+"/teams/user/"+user["id"],{
         headers: {
           "Authorization": authHeader()
         }})

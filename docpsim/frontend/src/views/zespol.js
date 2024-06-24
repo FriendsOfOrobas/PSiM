@@ -15,21 +15,21 @@ const Zespol = ({game}) => {
 
   useEffect(()=>{
     const fetchData = async() =>{
-      const user_res = await fetch("/users/me/", {
+      const user_res = await fetch("api/users/me/", {
         headers:{
           "Authorization": authHeader()
         }
       })
       const user_res_data = await user_res.json()
 
-      const team_res = await fetch("/teams/"+game["id"]+"/"+user_res_data["id"], {
+      const team_res = await fetch("api/teams/"+game["id"]+"/"+user_res_data["id"], {
         headers:{
           "Authorization": authHeader()
         }
       })
       const team_res_data = await team_res.json()
 
-      const team_det_res = await fetch("/teams/team/"+team_res_data["id"], {
+      const team_det_res = await fetch("api/teams/team/"+team_res_data["id"], {
         headers:{
           "Authorization": authHeader()
         }
@@ -41,7 +41,7 @@ const Zespol = ({game}) => {
         setMembers(team_det_res_data["members"])  
       }
 
-      const teams_det_res = await fetch("/teams/"+team_det_res_data["game_id"], {
+      const teams_det_res = await fetch("api/teams/"+team_det_res_data["game_id"], {
         headers:{
           "Authorization": authHeader()
         }

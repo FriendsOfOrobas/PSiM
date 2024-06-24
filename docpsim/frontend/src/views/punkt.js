@@ -15,7 +15,7 @@ const Punkt = () => {
   const authHeader = useAuthHeader()
 
   const commentPOST = async(newComment) =>{
-    const res = await fetch("/checkpoint/"+point["id"]+"/comments",{
+    const res = await fetch("api/checkpoint/"+point["id"]+"/comments",{
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -38,7 +38,7 @@ const Punkt = () => {
 
   useEffect(() => {
     const fetchComments = async() =>{
-      const res = await fetch("/checkpoint/"+point["id"]+"/comments",{
+      const res = await fetch("api/checkpoint/"+point["id"]+"/comments",{
         headers: {
           "Authorization": authHeader()
         }
