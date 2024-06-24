@@ -18,7 +18,7 @@ const Logowanie = ({loginFunc}) => {
       password
     }
     const body_str = 'username='+data["username"]+'&password='+data["password"]+'&scope=&client_id=&client_secret='
-    const res = await fetch("https://p-si-m-back.vercel.app/login/",{
+    const res = await fetch(/"login/",{
       method: "POST",
       headers: {
         'accept': 'application/json',
