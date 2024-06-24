@@ -41,10 +41,10 @@ def create_game(db: Session, game: schemas.GameCreate, checkpoints: List[schemas
         db.add(db_checkpoint)
         db.flush()
         new_id = db_checkpoint.id
-        qr_string = f"{PROXY}/unlock/{db_game.id}/{db_checkpoint.id}"
-        qr_code = segno.make_qr(qr_string)
-        qr_path = f"{QR_PATH}qr_{new_id}.png"
-        qr_code.save(qr_path,scale=10)
+        #qr_string = f"{PROXY}/unlock/{db_game.id}/{db_checkpoint.id}"
+        #qr_code = segno.make_qr(qr_string)
+        #qr_path = f"{QR_PATH}qr_{new_id}.png"
+        #qr_code.save(qr_path,scale=10)
         db_checkpoint = db.query(models.Checkpoints).filter(models.Checkpoints.id == new_id)
         db_checkpoint.update({"qr_code_path":f"qr_{new_id}.png"})
         db.flush()
