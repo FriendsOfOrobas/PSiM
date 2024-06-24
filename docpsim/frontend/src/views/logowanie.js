@@ -18,7 +18,7 @@ const Logowanie = ({loginFunc}) => {
       password
     }
     const body_str = 'username='+data["username"]+'&password='+data["password"]+'&scope=&client_id=&client_secret='
-    const res = await fetch("api/login/",{
+    const res = await fetch("/login/",{
       method: "POST",
       headers: {
         'accept': 'application/json',

@@ -1,8 +1,8 @@
 {
-	"rewrites" : [
+	"routes" : [
 		{
-			"source" : "api/:match*",
-			"destination" : "https://p-si-m-back.vercel.app/:match*"
+			"src" : "/:path*",
+			"dest" : "https://p-si-m-back.vercel.app/:path*"
 		}
 	]
 }
